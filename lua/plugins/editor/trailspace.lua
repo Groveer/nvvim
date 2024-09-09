@@ -6,7 +6,7 @@ return {
       function()
         require("mini.trailspace").trim()
       end,
-      "n",
+      mode = {"n", "v"},
       desc = "Tarilspace Trim all",
     },
   },
