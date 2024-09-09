@@ -16,6 +16,13 @@ return {
   },
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   opts = {
+    disable_netrw = true,
+    hijack_cursor = true,
+    sync_root_with_cwd = true,
+    update_focused_file = {
+      enable = true,
+      update_root = false,
+    },
     git = {
       enable = true,
       ignore = false,
@@ -34,6 +41,8 @@ return {
     end,
     renderer = {
       root_folder_label = false,
+      highlight_git = true,
+      indent_markers = { enable = true },
       icons = {
         show = {
           file = true,
