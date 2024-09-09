@@ -1,6 +1,11 @@
 return {
   "numToStr/Comment.nvim",
-  keys = { { "gcc", "gbc", mode = "n" }, { "gc", "gb", mode = "v" } },
+  keys = {
+    { "gcc", mode = "n" },
+    { "gbc", mode = "n" },
+    { "gc", mode = "v" },
+    { "gb", mode = "v" },
+  },
   opts = function()
     return {
       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
