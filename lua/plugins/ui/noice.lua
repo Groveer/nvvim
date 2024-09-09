@@ -3,6 +3,7 @@ return {
   event = "UIEnter",
   opts = {
     lsp = {
+      signature = { auto_open = { enabled = false } },
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
@@ -26,6 +27,7 @@ return {
       bottom_search = true,
       command_palette = true,
       long_message_to_split = true,
+      lsp_doc_border = true,
     },
   },
   -- stylua: ignore
@@ -47,7 +49,9 @@ return {
     if vim.o.filetype == "lazy" then
       vim.cmd([[messages clear]])
     end
+
     require("noice").setup(opts)
+    vim.api.nvim_set_hl(0, "NoiceMini", { bg = "NONE", fg = "cyan", blend = 0 })
   end,
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
