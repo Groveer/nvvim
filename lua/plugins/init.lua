@@ -1,5 +1,3 @@
-vim.uv = vim.uv or vim.loop
-
 return {
   { import = "plugins.ai.avante" },
   { import = "plugins.ai.codeium" },
