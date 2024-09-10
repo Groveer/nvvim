@@ -82,6 +82,16 @@ return {
   opts = function()
     local lga_actions = require("telescope-live-grep-args.actions")
     return {
+      defaults = {
+        layout_strategy = "horizontal",
+        layout_config = {
+          horizontal = {
+            width = 0.95,
+            height = 0.95,
+            preview_width = 0.6,
+          },
+        },
+      },
       extensions_list = { "themes", "terms", "noice", "live_grep_args" },
       extensions = {
         live_grep_args = {
