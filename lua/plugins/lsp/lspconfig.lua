@@ -31,43 +31,17 @@ end
 return {
   "neovim/nvim-lspconfig",
   event = "BufRead",
-  opts = function()
-    ---@class PluginLspOpts
-    local ret = {
-      -- options for vim.diagnostic.config()
-      ---@type vim.diagnostic.Opts
-      diagnostics = {
-        underline = true,
-        update_in_insert = false,
-        virtual_text = {
-          spacing = 4,
-          source = "if_many",
-          prefix = "●",
-          -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-          -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-          -- prefix = "icons",
-        },
-        severity_sort = true,
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = require("configs").icons.diagnostics.Error,
-            [vim.diagnostic.severity.WARN] = require("configs").icons.diagnostics.Warn,
-            [vim.diagnostic.severity.HINT] = require("configs").icons.diagnostics.Hint,
-            [vim.diagnostic.severity.INFO] = require("configs").icons.diagnostics.Info,
-          },
-        },
-      },
-    }
-    return ret
-  end,
-  config = function(_, opts)
+  config = function()
     local has_base46, _ = pcall(require, "base46")
     if has_base46 then
       dofile(vim.g.base46_cache .. "lsp")
     end
 
     require("lspconfig.ui.windows").default_options.border = "rounded"
-    vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+    local has_nvui, nvui = pcall(require, "nvchad.lsp")
+    if has_nvui then
+      nvui.diagnostic_config()
+    end
 
     local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     local capabilities = vim.tbl_deep_extend(
@@ -93,6 +67,7 @@ return {
         },
       },
     }
+
     local lspconfig = require("lspconfig")
     for name, s_opts in pairs(servers) do
       s_opts.on_init = on_init

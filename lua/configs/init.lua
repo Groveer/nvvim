@@ -136,9 +136,6 @@ M.icons = {
   misc = {
     dots = "󰇘",
   },
-  ft = {
-    octo = "",
-  },
   dap = {
     Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
     Breakpoint = " ",
@@ -146,21 +143,10 @@ M.icons = {
     BreakpointRejected = { " ", "DiagnosticError" },
     LogPoint = ".>",
   },
-  diagnostics = {
-    Error = " ",
-    Warn = " ",
-    Hint = " ",
-    Info = " ",
-  },
   mason = {
     package_pending = " ",
     package_installed = " ",
     package_uninstalled = " ",
-  },
-  git = {
-    added = " ",
-    modified = " ",
-    removed = " ",
   },
   kinds = {
     Array = " ",
