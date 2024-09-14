@@ -32,6 +32,7 @@ return {
   { import = "plugins.ui.neoscroll" },
   { import = "plugins.ui.noice" },
   { import = "plugins.ui.nvim-tree" },
+  { import = "plugins.ui.nvim-treesitter-context" },
   { import = "plugins.ui.nvim-web-devicons" },
   { import = "plugins.ui.nvui" },
 }
