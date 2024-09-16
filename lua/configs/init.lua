@@ -177,6 +177,7 @@ M.icons = {
     Object = " ",
     Operator = " ",
     Ollama = "󰚩 ",
+    Deepseek = "󰚩 ",
     Package = " ",
     Property = " ",
     Reference = " ",
