@@ -35,6 +35,11 @@ M.base46 = {
   theme = "tokyonight",
   theme_toggle = { "tokyonight", "tokyonight" },
   transparency = true,
+  integrations = {
+    "notify",
+    "todo",
+    "rainbowdelimiters",
+  },
 }
 
 M.lsp = {

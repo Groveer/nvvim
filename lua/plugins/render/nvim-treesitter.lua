@@ -39,6 +39,14 @@ return {
   },
   dependencies = {
     "hiphish/rainbow-delimiters.nvim",
+    config = function(_, opts)
+      local has_base46, _ = pcall(require, "base46")
+      if has_base46 then
+        dofile(vim.g.base46_cache .. "rainbowdelimiters")
+      end
+
+      require("rainbow-delimiters.setup").setup(opts)
+    end,
   },
 
   config = function(_, opts)
