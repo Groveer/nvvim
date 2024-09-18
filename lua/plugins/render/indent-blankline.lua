@@ -14,7 +14,13 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   event = { "BufReadPost", "BufNewFile" },
   opts = {
-    scope = { highlight = highlight },
+    scope = {
+      highlight = highlight,
+      char = "▏",
+    },
+    indent = {
+      char = "▏",
+    },
   },
   config = function(_, opts)
     local has_base46, _ = pcall(require, "base46")
