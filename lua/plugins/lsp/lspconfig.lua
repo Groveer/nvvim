@@ -20,6 +20,7 @@ local servers = {
   lua_ls = {},
   taplo = {},
   ts_ls = {},
+  lemminx = {},
 }
 
 local on_init = function(client, _)
