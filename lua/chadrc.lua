@@ -6,9 +6,6 @@ local M = {}
 
 M.ui = {
   telescope = { style = "bordered" }, -- borderless / bordered
-  hl_override = {
-    NvDashButtons = { fg = "yellow" },
-  },
   statusline = {
     theme = "vscode_colored",
   },
@@ -39,6 +36,10 @@ M.base46 = {
     "notify",
     "todo",
     "rainbowdelimiters",
+  },
+  hl_override = {
+    NvDashButtons = { fg = "yellow" },
+    LspInlayHint = { bg = "NONE" },
   },
 }
 

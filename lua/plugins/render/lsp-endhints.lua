@@ -12,7 +12,5 @@ return {
   enabled = vim.fn.has("nvim-0.10") == 1,
   config = function(_, opts)
     require("lsp-endhints").setup(opts)
-
-    vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "NONE", fg = "gray", blend = 0 })
   end,
 }
