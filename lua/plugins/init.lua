@@ -7,6 +7,7 @@ return {
   { import = "plugins.coding.nvim-cmp" },
   { import = "plugins.coding.plantuml" },
   { import = "plugins.editor.comment" },
+  { import = "plugins.editor.git-conflict" },
   { import = "plugins.editor.gitsigns" },
   { import = "plugins.editor.smartyank" },
   { import = "plugins.editor.spectre" },
