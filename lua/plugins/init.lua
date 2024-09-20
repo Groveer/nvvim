@@ -27,6 +27,7 @@ return {
   { import = "plugins.render.local-highlight" },
   { import = "plugins.render.lsp-endhints" },
   { import = "plugins.render.markdown" },
+  { import = "plugins.render.navic" },
   { import = "plugins.render.nvim-treesitter" },
   { import = "plugins.render.tiny-inline-diagnostic" },
   { import = "plugins.ui.diffview" },

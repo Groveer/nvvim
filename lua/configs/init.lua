@@ -130,6 +130,11 @@ M.lsp_on_attach = function(client, bufnr)
     end
   end, opts("Lsp Code action"))
   map("n", "gh", tc_builtin.lsp_references, opts("Lsp Show references"))
+
+  local has_navic, navic = pcall(require, "nvim-navic")
+  if has_navic and client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 M.icons = {

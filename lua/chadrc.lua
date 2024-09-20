@@ -8,6 +8,12 @@ M.ui = {
   telescope = { style = "bordered" }, -- borderless / bordered
   statusline = {
     theme = "vscode_colored",
+    order = { "mode", "file", "git", "navic", "%=", "diagnostics", "lsp", "cursor", "cwd" },
+    modules = {
+      navic = function()
+        return " " .. require("nvim-navic").get_location()
+      end,
+    },
   },
   nvdash = {
     load_on_startup = true,
@@ -35,6 +41,7 @@ M.base46 = {
   integrations = {
     "notify",
     "todo",
+    "navic",
     "rainbowdelimiters",
   },
   hl_override = {
