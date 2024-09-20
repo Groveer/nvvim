@@ -1,5 +1,3 @@
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
-vim.g.mapleader = " "
 vim.uv = vim.uv or vim.loop
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -19,16 +17,9 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-if vim.uv.fs_stat(vim.g.base46_cache) then
-  dofile(vim.g.base46_cache .. "defaults")
-  dofile(vim.g.base46_cache .. "statusline")
-end
-
 require("nvvim.configs.options")
 require("nvvim.configs.autocmds")
+require("nvvim.configs.mappings")
 
 require("lazy").setup(require("nvvim.configs").lazy_config)
 
-vim.schedule(function()
-  require("nvvim.configs.mappings")
-end)

@@ -1,3 +1,5 @@
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
+
 return {
   "NvChad/ui",
   event = "UIEnter",
@@ -8,6 +10,9 @@ return {
     end,
   },
   config = function()
+    dofile(vim.g.base46_cache .. "defaults")
+    dofile(vim.g.base46_cache .. "statusline")
+
     local map = vim.keymap.set
     map("n", "<leader>ch", "<CMD>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" })
     map({ "n", "t" }, "<A-d>", function()
