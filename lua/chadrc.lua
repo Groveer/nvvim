@@ -11,8 +11,32 @@ M.ui = {
     order = { "mode", "file", "git", "navic", "%=", "diagnostics", "lsp", "cursor", "cwd" },
     modules = {
       navic = function()
-        return " " .. require("nvim-navic").get_location()
+        local ok, navic = pcall(require, "nvim-navic")
+        if not ok then
+          return ""
+        end
+        return " %#StText# " .. navic.get_location()
       end,
+      lsp = function()
+        if rawget(vim, "lsp") then
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            if client.attached_buffers[vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)] then
+              local ok, icons = pcall(require, "nvim-web-devicons")
+              if not ok then
+                return "%#St_Lsp#" .. "   " .. client.name .. " "
+              end
+              local icon, hl = icons.get_icon_by_filetype(vim.bo.filetype, { default = false })
+              if not icon then
+                return "%#St_Lsp#" .. "   " .. client.name .. " "
+              end
+              return "%#" .. hl .. "#" .. icon .. " " .. client.name .. " "
+            end
+          end
+        end
+
+        return ""
+      end,
+      cursor = "%#St_pos_text# %l:%c  ",
     },
   },
   nvdash = {
