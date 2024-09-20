@@ -63,3 +63,34 @@
 - File navigation with [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
 - Beautiful and configurable icons with [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 
+## Usage
+
+There are two ways to use this config:
+
+1. Use this repository directly:
+
+```bash
+git clone https://github.com/Groveer/nvvim.git ~/.config/nvim
+```
+
+2. use [LazyVim](https://github.com/LazyVim/starter) or your custom starter to import it:
+
+```lua
+spec = {
+  -- add nvvim and import its plugins
+  { "Groveer/nvvim", import = "nvvim.plugins" },
+  -- import/override with your plugins
+  { import = "plugins" },
+},
+```
+
+And you can import some one plugins like:
+
+```lua
+spec = {
+  -- add nvvim and import its plugins
+  { "Groveer/nvvim", import = "nvvim.plugins.ai.copilot" },
+  -- import/override with your plugins
+  { import = "plugins" },
+}
+```
