@@ -15,7 +15,7 @@ M:load_variables()
 
 M.lazy_config = {
   spec = {
-    { import = "plugins" },
+    { import = "nvvim.plugins" },
   },
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },

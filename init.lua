@@ -24,11 +24,11 @@ if vim.uv.fs_stat(vim.g.base46_cache) then
   dofile(vim.g.base46_cache .. "statusline")
 end
 
-require("configs.options")
-require("configs.autocmds")
+require("nvvim.configs.options")
+require("nvvim.configs.autocmds")
 
-require("lazy").setup(require("configs").lazy_config)
+require("lazy").setup(require("nvvim.configs").lazy_config)
 
 vim.schedule(function()
-  require("configs.mappings")
+  require("nvvim.configs.mappings")
 end)

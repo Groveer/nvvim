@@ -9,7 +9,7 @@ return {
     },
     lsp = {
       enabled = true,
-      on_attach = require("configs").lsp_on_attach,
+      on_attach = require("nvvim.configs").lsp_on_attach,
       actions = true,
       completion = true,
       hover = true,

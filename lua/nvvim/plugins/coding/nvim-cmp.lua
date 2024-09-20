@@ -122,7 +122,7 @@ return {
       formatting = {
         fields = { "abbr", "kind", "menu" },
         format = function(_, item)
-          local icons = require("configs").icons.kinds
+          local icons = require("nvvim.configs").icons.kinds
           if icons[item.kind] then
             item.kind = icons[item.kind] .. item.kind
           end

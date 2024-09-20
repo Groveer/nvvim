@@ -72,7 +72,7 @@ return {
     local lspconfig = require("lspconfig")
     for name, s_opts in pairs(servers) do
       s_opts.on_init = on_init
-      s_opts.on_attach = require("configs").lsp_on_attach
+      s_opts.on_attach = require("nvvim.configs").lsp_on_attach
       s_opts.capabilities = capabilities
 
       lspconfig[name].setup(s_opts)
