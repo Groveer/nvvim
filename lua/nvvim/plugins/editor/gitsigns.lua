@@ -44,9 +44,9 @@ return {
     end,
   },
   config = function(_, opts)
-    local has_base46, _ = pcall(require, "base46")
-    if has_base46 then
-      dofile(vim.g.base46_cache .. "git")
+    local cache_dir = vim.g.base46_cache .. "git"
+    if vim.g.base46_cache and vim.uv.fs_stat(cache_dir) then
+      dofile(cache_dir)
     end
 
     require("gitsigns").setup(opts)

@@ -40,9 +40,9 @@ return {
   dependencies = {
     "hiphish/rainbow-delimiters.nvim",
     config = function(_, opts)
-      local has_base46, _ = pcall(require, "base46")
-      if has_base46 then
-        dofile(vim.g.base46_cache .. "rainbowdelimiters")
+      local cache_dir = vim.g.base46_cache .. "rainbowdelimiters"
+      if vim.g.base46_cache and vim.uv.fs_stat(cache_dir) then
+        dofile(cache_dir)
       end
 
       require("rainbow-delimiters.setup").setup(opts)
@@ -50,10 +50,13 @@ return {
   },
 
   config = function(_, opts)
-    local has_base46, _ = pcall(require, "base46")
-    if has_base46 then
-      dofile(vim.g.base46_cache .. "syntax")
-      dofile(vim.g.base46_cache .. "treesitter")
+    local cache_dir = vim.g.base46_cache .. "syntax"
+    if vim.g.base46_cache and vim.uv.fs_stat(cache_dir) then
+      dofile(cache_dir)
+    end
+    local cache_dir = vim.g.base46_cache .. "treesitter"
+    if vim.g.base46_cache and vim.uv.fs_stat(cache_dir) then
+      dofile(cache_dir)
     end
 
     require("nvim-treesitter.configs").setup(opts)

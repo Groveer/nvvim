@@ -78,9 +78,9 @@ return {
     },
   },
   config = function(_, opts)
-    local has_base46, _ = pcall(require, "base46")
-    if has_base46 then
-      dofile(vim.g.base46_cache .. "nvimtree")
+    local cache_dir = vim.g.base46_cache .. "nvimtree"
+    if vim.g.base46_cache and vim.uv.fs_stat(cache_dir) then
+      dofile(cache_dir)
     end
 
     -- disable netrw at the very start of your init.lua
