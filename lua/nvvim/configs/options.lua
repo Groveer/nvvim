@@ -71,9 +71,3 @@ command("au BufNewFile,BufRead *.iuml setfiletype plantuml")
 -- filetype for qml
 command("au BufNewFile,BufRead *.qml setfiletype qmljs")
 
-g.vscode_snippets_path = fn.stdpath("config") .. "/snips"
-
-local is_windows = vim.fn.has "win32" ~= 0
-local sep = is_windows and "\\" or "/"
-local delim = is_windows and ";" or ":"
-vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH

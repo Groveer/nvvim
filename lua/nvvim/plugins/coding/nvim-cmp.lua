@@ -1,3 +1,5 @@
+vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/snips"
+
 return {
   "hrsh7th/nvim-cmp",
   version = false, -- last release is way too old
