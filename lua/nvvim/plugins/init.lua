@@ -26,6 +26,7 @@ return {
   { import = "nvvim.plugins.render.navic" },
   { import = "nvvim.plugins.render.nvim-treesitter" },
   { import = "nvvim.plugins.render.tiny-inline-diagnostic" },
+  { import = "nvvim.plugins.tools.neoclip" },
   { import = "nvvim.plugins.tools.spectre" },
   { import = "nvvim.plugins.tools.suda" },
   { import = "nvvim.plugins.tools.telescope" },
