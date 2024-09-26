@@ -8,7 +8,7 @@ M.ui = {
   telescope = { style = "bordered" }, -- borderless / bordered
   statusline = {
     theme = "vscode_colored",
-    order = { "mode", "file", "git", "navic", "%=", "diagnostics", "lsp", "cursor", "cwd" },
+    order = { "mode", "file", "git", "navic", "%=", "diagnostics", "cursor", "lsp", "cwd" },
     modules = {
       navic = function()
         local ok, navic = pcall(require, "nvim-navic")
