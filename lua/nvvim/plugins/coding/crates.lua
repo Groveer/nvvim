@@ -21,6 +21,7 @@ return {
     if has_cmp then
       local config = cmp.get_config()
       table.insert(config.sources, 3, {
+        group_index = 1,
         name = "crates",
         max_item_count = 5,
       })

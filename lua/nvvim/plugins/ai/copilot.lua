@@ -12,11 +12,15 @@ return {
   dependencies = {
     {
       "zbirenbaum/copilot-cmp",
+      dependencies = {
+        "hrsh7th/nvim-cmp",
+      },
       config = function(_, opts)
         local has_cmp, cmp = pcall(require, "cmp")
         if has_cmp then
           local config = cmp.get_config()
           table.insert(config.sources, 1, {
+            group_index = 1,
             name = "copilot",
             max_item_count = 5,
           })

@@ -13,6 +13,7 @@ return {
     if has_cmp then
       local config = cmp.get_config()
       table.insert(config.sources, 2, {
+        group_index = 1,
         name = "codeium",
         max_item_count = 5,
       })
