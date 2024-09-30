@@ -17,16 +17,7 @@ return {
   },
 
   config = function(_, opts)
-    local has_cmp, cmp = pcall(require, "cmp")
-    if has_cmp then
-      local config = cmp.get_config()
-      table.insert(config.sources, 3, {
-        group_index = 1,
-        name = "crates",
-        max_item_count = 5,
-      })
-      cmp.setup(config)
-    end
+    require("nvvim.configs").add_cmp_source("crates", 3)
     return require("crates").setup(opts)
   end,
 }

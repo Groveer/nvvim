@@ -16,17 +16,7 @@ return {
         "hrsh7th/nvim-cmp",
       },
       config = function(_, opts)
-        local has_cmp, cmp = pcall(require, "cmp")
-        if has_cmp then
-          local config = cmp.get_config()
-          table.insert(config.sources, 1, {
-            group_index = 1,
-            name = "copilot",
-            max_item_count = 5,
-          })
-          cmp.setup(config)
-        end
-
+        require("nvvim.configs").add_cmp_source("copilot", 1)
         require("copilot_cmp").setup(opts)
       end,
     },

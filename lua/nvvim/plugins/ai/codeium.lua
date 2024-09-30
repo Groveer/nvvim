@@ -9,16 +9,7 @@ return {
     "hrsh7th/nvim-cmp",
   },
   config = function(_, opts)
-    local has_cmp, cmp = pcall(require, "cmp")
-    if has_cmp then
-      local config = cmp.get_config()
-      table.insert(config.sources, 2, {
-        group_index = 1,
-        name = "codeium",
-        max_item_count = 5,
-      })
-      cmp.setup(config)
-    end
+    require("nvvim.configs").add_cmp_source("codeium", 2)
     require("codeium").setup(opts)
   end,
 }
