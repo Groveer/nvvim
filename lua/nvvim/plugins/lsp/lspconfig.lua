@@ -1,8 +1,8 @@
 -- set env PATH for mason
-local is_windows = vim.fn.has "win32" ~= 0
+local is_windows = vim.fn.has("win32") ~= 0
 local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
-vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
+vim.env.PATH = table.concat({ vim.fn.stdpath("data"), "mason", "bin" }, sep) .. delim .. vim.env.PATH
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
@@ -23,7 +23,26 @@ local servers = {
   bashls = {},
   jsonls = {},
   neocmake = {},
-  lua_ls = {},
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = {
+            vim.fn.expand("$VIMRUNTIME/lua"),
+            vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+            vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
+            vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
+            "${3rd}/luv/library",
+          },
+          maxPreload = 100000,
+          preloadFileSize = 10000,
+        },
+      },
+    },
+  },
   taplo = {},
   ts_ls = {},
   lemminx = {},
