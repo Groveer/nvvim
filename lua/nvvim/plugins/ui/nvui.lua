@@ -7,6 +7,8 @@ return {
       require("base46").load_all_highlights()
     end,
   },
+  "nvchad/volt",
+  "nvchad/minty",
   {
     "NvChad/ui",
     event = "UIEnter",
@@ -30,6 +32,16 @@ return {
       map({ "n", "i" }, "<A-q>", function()
         require("nvchad.tabufline").close_buffer()
       end, { desc = "Buffer Close" })
+
+      map("n", "<leader>th", function()
+        require("nvchad.themes").open()
+      end, { desc = "telescope nvchad themes" })
+
+      map("n", "<leader>cp", function()
+        require("minty.huefy").open({ border = true })
+      end)
+
+      require("nvchad")
     end,
   },
 }

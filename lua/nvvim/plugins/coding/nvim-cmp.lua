@@ -14,28 +14,31 @@ local function cmp_opts()
   else
     cmp_ui = nvconfig.ui.cmp
   end
-  local cmp_style = cmp_ui.style
 
-  local field_arrangement = {
-    atom = { "kind", "abbr", "menu" },
-    atom_colored = { "kind", "abbr", "menu" },
-  }
+  local has_format, format_kk = pcall(require, "nvchad.cmp.format")
+
+  local cmp_style = cmp_ui.style
+  local atom_styled = cmp_style == "atom" or cmp_style == "atom_colored"
+  local fields = (atom_styled or cmp_ui.icons_left) and { "kind", "abbr", "menu" } or { "abbr", "kind", "menu" }
 
   local formatting_style = {
-    -- default fields order i.e completion word + item.kind + item.kind icons
-    fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
+    fields = fields,
 
-    format = function(_, item)
+    format = function(entry, item)
       local icons = require("nvvim.configs").icons.kinds
-      local icon = (cmp_ui.icons and icons[item.kind]) or ""
 
-      if cmp_style == "atom" or cmp_style == "atom_colored" then
-        icon = " " .. icon .. " "
-        item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
-        item.kind = icon
-      else
-        icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
-        item.kind = string.format("%s %s", icon, cmp_ui.lspkind_text and item.kind or "")
+      item.menu = cmp_ui.lspkind_text and item.kind or ""
+      item.menu_hl_group = atom_styled and "LineNr" or "CmpItemKind" .. (item.kind or "")
+
+      item.kind = item.kind and icons[item.kind] .. " " or ""
+      item.kind = cmp_ui.icons_left and item.kind or " " .. item.kind
+
+      if atom_styled or cmp_ui.icons_left then
+        item.menu = " " .. item.menu
+      end
+
+      if cmp_ui.format_colors.tailwind and has_format then
+        format_kk.tailwind(entry, item)
       end
 
       return item
@@ -56,29 +59,22 @@ local function cmp_opts()
   end
 
   local options = {
-    completion = {
-      completeopt = "menu,menuone",
-    },
-
-    window = {
-      completion = {
-        side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
-        winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
-        scrollbar = false,
-      },
-      documentation = {
-        border = border("CmpDocBorder"),
-        winhighlight = "Normal:CmpDoc",
-      },
-    },
+    completion = { completeopt = "menu,menuone" },
+    formatting = formatting_style,
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
       end,
     },
+    window = {
+      completion = {
+        border = atom_styled and "none" or border("CmpBorder"),
+      },
 
-    formatting = formatting_style,
-
+      documentation = {
+        border = border("CmpDocBorder"),
+      },
+    },
     mapping = {
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-n>"] = cmp.mapping.select_next_item(),
@@ -112,6 +108,7 @@ local function cmp_opts()
         end
       end, { "i", "s" }),
     },
+
     sources = {
       { name = "nvim_lsp" },
       { name = "luasnip" },
@@ -121,9 +118,6 @@ local function cmp_opts()
     },
   }
 
-  if cmp_style ~= "atom" and cmp_style ~= "atom_colored" then
-    options.window.completion.border = border("CmpBorder")
-  end
   return options
 end
 

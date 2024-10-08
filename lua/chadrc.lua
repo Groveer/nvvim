@@ -5,6 +5,15 @@
 local M = {}
 
 M.ui = {
+  cmp = {
+    icons_left = true, -- only for non-atom styles!
+    lspkind_text = true,
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    format_colors = {
+      tailwind = true, -- will work for css lsp too
+      icon = "󱓻",
+    },
+  },
   telescope = { style = "bordered" }, -- borderless / bordered
   statusline = {
     theme = "vscode_colored",
@@ -39,22 +48,30 @@ M.ui = {
       cursor = "%#St_pos_text# %l:%c  ",
     },
   },
-  nvdash = {
-    load_on_startup = true,
-    buttons = {
-      { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-      { "  Find File", "Spc f f", "Telescope find_files" },
-      { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-      { "  Bookmarks", "Spc m a", "Telescope marks" },
-      { "  Themes", "Spc t h", "Telescope themes" },
-      { "  Mappings", "Spc c h", "NvCheatsheet" },
-      function()
+}
+
+M.nvdash = {
+  load_on_startup = true,
+  buttons = {
+    { txt = "  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
+    { txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
+    { txt = "󰈭  Find Word", keys = "Spc f w", cmd = "Telescope live_grep" },
+    { txt = "󱥚  Themes", keys = "Spc t h", cmd = ":lua require('nvchad.themes').open()" },
+    { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
+
+    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
+
+    {
+      txt = function()
         local stats = require("lazy").stats()
-        local plugins = "  Loaded " .. stats.count .. " plugins in "
-        local time = math.floor(stats.startuptime) .. " ms   "
-        return plugins .. time
+        local ms = math.floor(stats.startuptime) .. " ms"
+        return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
       end,
+      hl = "NvDashLazy",
+      no_gap = true,
     },
+
+    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
   },
 }
 

@@ -57,12 +57,6 @@ return {
       desc = "Telescope Find marks",
     },
     {
-      "<leader>th",
-      "<CMD>Telescope themes<CR>",
-      mode = "n",
-      desc = "Telescope Themes",
-    },
-    {
       "<leader>gc",
       function()
         require("telescope.builtin").git_commits()
