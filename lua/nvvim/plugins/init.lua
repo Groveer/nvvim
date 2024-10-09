@@ -26,6 +26,7 @@ return {
   { import = "nvvim.plugins.render.lsp-endhints" },
   { import = "nvvim.plugins.render.markdown" },
   { import = "nvvim.plugins.render.navic" },
+  { import = "nvvim.plugins.render.nvim-treesitter-context" },
   { import = "nvvim.plugins.render.nvim-treesitter" },
   { import = "nvvim.plugins.render.tiny-inline-diagnostic" },
   { import = "nvvim.plugins.tools.neoclip" },
@@ -37,7 +38,6 @@ return {
   { import = "nvvim.plugins.ui.neoscroll" },
   { import = "nvvim.plugins.ui.noice" },
   { import = "nvvim.plugins.ui.nvim-tree" },
-  { import = "nvvim.plugins.ui.nvim-treesitter-context" },
   { import = "nvvim.plugins.ui.nvim-web-devicons" },
   { import = "nvvim.plugins.ui.nvui" },
 }
