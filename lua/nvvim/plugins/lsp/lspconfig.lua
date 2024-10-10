@@ -10,7 +10,15 @@ local servers = {
   clangd = {
     cmd = {
       "clangd",
-      "-j=24",
+      "-j=12",
+      "--enable-config",
+      "--background-index",
+      "--pch-storage=memory",
+      "--completion-style=detailed",
+      "--header-insertion-decorators",
+      "--header-insertion=iwyu",
+      "--limit-references=3000",
+      "--limit-results=350",
       "--offset-encoding=utf-16",
       "--clang-tidy",
       "--all-scopes-completion",
