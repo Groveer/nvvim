@@ -1,8 +1,8 @@
 return {
   { import = "nvvim.plugins.ai.avante" },
-  { import = "nvvim.plugins.ai.codeium" },
+  -- { import = "nvvim.plugins.ai.codeium" },
   { import = "nvvim.plugins.ai.copilot" },
-  { import = "nvvim.plugins.ai.minuet-ai" },
+  -- { import = "nvvim.plugins.ai.minuet-ai" },
   { import = "nvvim.plugins.coding.autopairs" },
   { import = "nvvim.plugins.coding.crates" },
   { import = "nvvim.plugins.coding.luasnip" },
