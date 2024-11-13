@@ -47,7 +47,7 @@ return {
     },
     provider = "copilot",
     behaviour = {
-      auto_suggestions = true, -- Experimental stage
+      auto_suggestions = false, -- Experimental stage
     },
     vendors = {
       ollama = {
