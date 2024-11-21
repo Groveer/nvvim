@@ -38,6 +38,7 @@ return {
   end,
   cmd = "AvanteAsk",
   lazy = false,
+  version = false,
   build = "make BUILD_FROM_SOURCE=true",
   opts = {
     mappings = {
@@ -76,10 +77,12 @@ return {
     },
   },
   dependencies = {
+    "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
+    "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
