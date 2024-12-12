@@ -29,6 +29,7 @@ return {
   { import = "nvvim.plugins.render.nvim-treesitter-context" },
   { import = "nvvim.plugins.render.nvim-treesitter" },
   { import = "nvvim.plugins.render.tiny-inline-diagnostic" },
+  { import = "nvvim.plugins.tools.codesnap" },
   { import = "nvvim.plugins.tools.neoclip" },
   { import = "nvvim.plugins.tools.spectre" },
   { import = "nvvim.plugins.tools.suda" },
