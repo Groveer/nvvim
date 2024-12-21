@@ -21,14 +21,11 @@ return {
     sync_root_with_cwd = true,
     update_focused_file = {
       enable = true,
-      update_root = false,
-    },
-    git = {
-      enable = true,
-      ignore = false,
     },
     filters = {
       dotfiles = false,
+      git_ignored = false,
+      git_clean = false,
     },
     on_attach = function(bufnr)
       local api = require("nvim-tree.api")
@@ -41,7 +38,13 @@ return {
     end,
     renderer = {
       root_folder_label = false,
-      highlight_git = true,
+      highlight_git = "all",
+      highlight_diagnostics = "all",
+      highlight_opened_files = "all",
+      highlight_modified = "all",
+      highlight_hidden = "all",
+      highlight_bookmarks = "all",
+      highlight_clipboard = "all",
       indent_markers = { enable = true },
       icons = {
         show = {
