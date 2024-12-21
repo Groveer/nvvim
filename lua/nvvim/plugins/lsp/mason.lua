@@ -19,6 +19,7 @@ return {
 
       -- c/cpp stuff
       "clangd",
+      "clang-format",
 
       -- bash stuff
       "bash-language-server",
@@ -34,7 +35,9 @@ return {
       -- "latexindent", -- formatter
 
       -- cmake stuff
-      -- "neocmakelsp",
+      "neocmakelsp",
+
+      "taplo",
     },
 
     ui = {
