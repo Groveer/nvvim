@@ -1,6 +1,7 @@
 return {
   "mistricky/codesnap.nvim",
-  build = "make",
+  build = "make build_generator",
+  enabled = not require("nvvim.configs").is_windows,
   cmd = {
     "CodeSnap",
     "CodeSnapASCII",
