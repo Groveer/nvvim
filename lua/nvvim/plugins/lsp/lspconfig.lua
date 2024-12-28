@@ -4,7 +4,7 @@ local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath("data"), "mason", "bin" }, sep) .. delim .. vim.env.PATH
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 local servers = {
   html = {},
   clangd = {
@@ -27,7 +27,14 @@ local servers = {
     filetypes = { "c", "cpp" },
     single_file_support = false,
   },
-  pylsp = {},
+  pylsp = {
+    plugins = {
+      pycodestyle = {
+        ignore = { "W391" },
+        maxLineLength = 100,
+      },
+    },
+  },
   bashls = {},
   jsonls = {},
   neocmake = {},
