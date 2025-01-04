@@ -16,7 +16,7 @@ autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
   pattern = "*",
   callback = function()
     vim.opt_local.foldmethod = "expr"
