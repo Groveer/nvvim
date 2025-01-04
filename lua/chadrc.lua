@@ -87,6 +87,9 @@ M.base46 = {
     "todo",
     "navic",
     "rainbowdelimiters",
+    "avante",
+    "diffview",
+    "git-conflict",
   },
   hl_override = {
     NvDashButtons = { fg = "yellow" },

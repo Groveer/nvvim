@@ -73,11 +73,6 @@ return {
   "neovim/nvim-lspconfig",
   event = "BufRead",
   config = function()
-    local cache_dir = vim.g.base46_cache .. "lsp"
-    if vim.g.base46_cache and vim.uv.fs_stat(cache_dir) then
-      dofile(cache_dir)
-    end
-
     require("lspconfig.ui.windows").default_options.border = "rounded"
     local has_nvui, nvui = pcall(require, "nvchad.lsp")
     if has_nvui then

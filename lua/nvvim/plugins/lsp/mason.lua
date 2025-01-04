@@ -48,11 +48,6 @@ return {
     max_concurrent_installers = 10,
   },
   config = function(_, opts)
-    local cache_dir = vim.g.base46_cache .. "mason"
-    if vim.g.base46_cache and vim.uv.fs_stat(cache_dir) then
-      dofile(cache_dir)
-    end
-
     require("mason").setup(opts)
     local mr = require("mason-registry")
     mr:on("package:install:success", function()
