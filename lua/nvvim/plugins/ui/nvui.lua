@@ -7,8 +7,8 @@ return {
       require("base46").load_all_highlights()
     end,
   },
-  "nvchad/volt",
-  "nvchad/minty",
+  "nvzone/volt",
+  { "nvzone/minty", cmd = { "Huefy", "Shades" } },
   {
     "NvChad/ui",
     event = "UIEnter",
