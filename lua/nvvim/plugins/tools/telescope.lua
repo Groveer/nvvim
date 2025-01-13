@@ -110,6 +110,8 @@ return {
     version = "^1.0.0",
   },
   config = function(_, opts)
+    vim.api.nvim_set_hl(0, 'TelescopePreviewLine', { fg = 'NONE', bg = '#27408B' })
+    vim.api.nvim_set_hl(0, 'TelescopeSelection', { fg = 'NONE', bg = '#27408B' })
     require("telescope").setup(opts)
   end,
 }
