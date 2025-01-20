@@ -21,6 +21,7 @@ return {
   { import = "nvvim.plugins.lsp.mason" },
   { import = "nvvim.plugins.lsp.rustaceanvim" },
   { import = "nvvim.plugins.render.colorizer" },
+  { import = "nvvim.plugins.render.image" },
   { import = "nvvim.plugins.render.indent-blankline" },
   { import = "nvvim.plugins.render.local-highlight" },
   { import = "nvvim.plugins.render.lsp-endhints" },
