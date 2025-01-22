@@ -27,6 +27,7 @@ return {
   { import = "nvvim.plugins.render.lsp-endhints" },
   { import = "nvvim.plugins.render.markdown" },
   { import = "nvvim.plugins.render.navic" },
+  { import = "nvvim.plugins.render.nvim-treesitter-context" },
   { import = "nvvim.plugins.render.nvim-treesitter" },
   { import = "nvvim.plugins.render.tiny-inline-diagnostic" },
   { import = "nvvim.plugins.tools.codesnap" },
