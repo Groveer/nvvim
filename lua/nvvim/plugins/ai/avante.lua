@@ -143,7 +143,7 @@ return {
   },
   cmd = "AvanteAsk",
   version = false,
-  build = "make BUILD_FROM_SOURCE=true",
+  build = "make",
   opts = {
     provider = "copilot",
     vendors = {
