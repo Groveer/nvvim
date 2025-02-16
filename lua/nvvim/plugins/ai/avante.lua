@@ -144,6 +144,7 @@ return {
   cmd = "AvanteAsk",
   version = false,
   build = "make",
+  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false", -- for windows
   opts = {
     provider = "copilot",
     vendors = {
@@ -207,6 +208,7 @@ return {
     },
   },
   config = function(_, opts)
+    vim.cmd("AvanteBuild")
     require("avante_lib").load()
     require("avante").setup(opts)
   end,
