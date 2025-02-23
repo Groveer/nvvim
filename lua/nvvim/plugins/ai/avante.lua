@@ -146,30 +146,13 @@ return {
   build = "make",
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false", -- for windows
   opts = {
-    provider = "copilot",
+    provider = "deepseek",
     vendors = {
-      ollama = {
-        ["local"] = true,
-        endpoint = "http://chat.groveer.com:11434/v1",
-        model = "codellama",
-        parse_curl_args = function(opts, code_opts)
-          return {
-            url = opts.endpoint .. "/chat/completions",
-            headers = {
-              ["Accept"] = "application/json",
-              ["Content-Type"] = "application/json",
-            },
-            body = {
-              model = opts.model,
-              messages = require("avante.providers").openai.parse_message(code_opts),
-              max_tokens = 2048,
-              stream = true,
-            },
-          }
-        end,
-        parse_response_data = function(data_stream, event_state, opts)
-          require("avante.providers").openai.parse_response(data_stream, event_state, opts)
-        end,
+      deepseek = {
+        __inherited_from = "openai",
+        endpoint = "http://localhost:8000/v1",
+        api_key_name = "DEEPSEEK_API_KEY",
+        model = "deepseek-r1",
       },
     },
   },
