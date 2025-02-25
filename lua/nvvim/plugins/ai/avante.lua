@@ -146,13 +146,19 @@ return {
   build = "make",
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false", -- for windows
   opts = {
-    provider = "deepseek",
+    provider = "copilot",
+    copilot = {
+      -- model = "claude-3.5-sonnet",
+      model = "claude-3.7-sonnet",
+      -- model = "DeepSeek-R1",
+    },
     vendors = {
       deepseek = {
         __inherited_from = "openai",
         endpoint = "http://localhost:8000/v1",
         api_key_name = "DEEPSEEK_API_KEY",
         model = "deepseek-r1",
+        max_tokens = 10240,
       },
     },
   },
