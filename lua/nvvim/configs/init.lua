@@ -88,13 +88,13 @@ M.lazy_config = {
 
 M.lsp_on_attach = function(client, bufnr)
   local map = vim.keymap.set
-  local tc_builtin = require("telescope.builtin")
+  local fzf = require("fzf-lua")
   local lsp = vim.lsp
   local function opts(desc)
     return { buffer = bufnr, desc = desc }
   end
   map("n", "gD", lsp.buf.declaration, opts("Lsp Go to declaration"))
-  map("n", "gd", tc_builtin.lsp_definitions, opts("Lsp Go to definition"))
+  map("n", "gd", fzf.lsp_definitions, opts("Lsp Go to definition"))
   map("n", "K", function()
     if client.name == "rust-analyzer" then
       vim.cmd.RustLsp({ "hover", "actions" })
@@ -102,7 +102,7 @@ M.lsp_on_attach = function(client, bufnr)
       lsp.buf.hover()
     end
   end, opts("Lsp hover information"))
-  map("n", "gi", tc_builtin.lsp_implementations, opts("Lsp Go to implementation"))
+  map("n", "gi", fzf.lsp_implementations, opts("Lsp Go to implementation"))
   map("n", "gl", function()
     lsp.codelens.run()
   end, opts("Lsp CodeLens action"))
@@ -122,7 +122,7 @@ M.lsp_on_attach = function(client, bufnr)
     end, opts("Lsp RustLsp explain error"))
   end
 
-  map("n", "gy", tc_builtin.lsp_type_definitions, opts("Lsp Go to type definition"))
+  map("n", "gy", fzf.lsp_typedefs, opts("Lsp Go to type definition"))
   map("n", "go", "<cmd>AerialToggle!<CR>", opts("Lsp Show outline"))
   map("n", "[", "<cmd>AerialPrev<CR>", opts("Lsp Previous symbol"))
   map("n", "]", "<cmd>AerialNext<CR>", opts("Lsp Next symbol"))
@@ -140,10 +140,10 @@ M.lsp_on_attach = function(client, bufnr)
     if client.name == "rust-analyzer" then
       vim.cmd.RustLsp("codeAction")
     else
-      require("actions-preview").code_actions()
+      fzf.lsp_code_actions()
     end
   end, opts("Lsp Code action"))
-  map("n", "gh", tc_builtin.lsp_references, opts("Lsp Show references"))
+  map("n", "gh", fzf.lsp_references, opts("Lsp Show references"))
 
   local has_navic, navic = pcall(require, "nvim-navic")
   if has_navic and client.server_capabilities.documentSymbolProvider then

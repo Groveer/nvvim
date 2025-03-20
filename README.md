@@ -1,6 +1,6 @@
 ## What is it?
 
-- This is a neovim config written in lua aiming to provide a configuration with very beautiful UI and blazing fast startuptime (around 0.02 secs ~ 0.07 secs). We tweak UI plugins such as telescope, nvim-tree etc well to provide an aesthetic UI experience.
+- This is a neovim config written in lua aiming to provide a configuration with very beautiful UI and blazing fast startuptime (around 0.02 secs ~ 0.07 secs). We tweak UI plugins such as fzf-lua, nvim-tree etc well to provide an aesthetic UI experience.
 
 - Lazy loading is done 93% of the time meaning that plugins will not be loaded by default, they will be loaded only when required also at specific commands, events etc. This lowers the startuptime.
 
@@ -30,7 +30,7 @@
 - A customizable yank [smartyank.nvim](https://github.com/ibhagwan/smartyank.nvim)
 - A search panel for neovim [spectre.nvim](https://github.com/nvim-pack/spectre.nvim)
 - A plugin to read or write files with sudo command [suda.vim](https://github.com/lambdalisue/suda.vim)
-- File searching, previewing text files and more with [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
+- File searching, previewing text files and more with [fzf-lua](https://github.com/ibhagwan/fzf-lua).
 - Highlight, list and search todo comments with [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 - Manage trailspace with [mini.trailspace](https://github.com/echasnovski/mini.trailspace)
 - Popup mappings keysheet [whichkey.nvim](https://github.com/folke/which-key.nvim)

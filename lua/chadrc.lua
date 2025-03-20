@@ -14,7 +14,6 @@ M.ui = {
       icon = "󱓻",
     },
   },
-  telescope = { style = "bordered" }, -- borderless / bordered
   statusline = {
     theme = "vscode_colored",
     order = { "mode", "file", "git", "navic", "%=", "diagnostics", "cursor", "lsp", "cwd" },
@@ -56,9 +55,9 @@ M.ui = {
 M.nvdash = {
   load_on_startup = true,
   buttons = {
-    { txt = "  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
-    { txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
-    { txt = "󰈭  Find Word", keys = "Spc f w", cmd = "Telescope live_grep" },
+    { txt = "  Recent Files", keys = "Spc f o", cmd = "FzfLua oldfiles" },
+    { txt = "  Find File", keys = "Spc f f", cmd = "FzfLua files" },
+    { txt = "󰈭  Find Word", keys = "Spc f w", cmd = "FzfLua live_grep" },
     { txt = "󱥚  Themes", keys = "Spc t h", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
 

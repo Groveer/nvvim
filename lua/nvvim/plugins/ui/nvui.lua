@@ -36,7 +36,7 @@ return {
 
       map("n", "<leader>th", function()
         require("nvchad.themes").open()
-      end, { desc = "telescope nvchad themes" })
+      end, { desc = "nvchad themes" })
 
       map("n", "<leader>cp", function()
         require("minty.huefy").open({ border = true })
