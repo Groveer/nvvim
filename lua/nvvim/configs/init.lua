@@ -96,7 +96,7 @@ M.lsp_on_attach = function(client, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = desc }
   end
-  map("n", "gD", lsp.buf.declaration, opts("Lsp Go to declaration"))
+  map("n", "gD", fzf.lsp_declarations, opts("Lsp Go to declaration"))
   map("n", "gd", fzf.lsp_definitions, opts("Lsp Go to definition"))
   map("n", "K", function()
     if client.name == "rust-analyzer" then
