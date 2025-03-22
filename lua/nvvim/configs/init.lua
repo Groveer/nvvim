@@ -31,7 +31,10 @@ M.lazy_config = {
   spec = {
     { import = "nvvim.plugins" },
   },
-  defaults = { lazy = true },
+  defaults = {
+    lazy = true,
+    version = false,
+  },
   install = { colorscheme = { "nvchad" } },
 
   rocks = {
