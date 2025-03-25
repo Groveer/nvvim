@@ -21,7 +21,6 @@ return {
   },
 
   config = function(_, opts)
-    require("nvvim.configs").add_cmp_source("crates", 3)
     return require("crates").setup(opts)
   end,
 }

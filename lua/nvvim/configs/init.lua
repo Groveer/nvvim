@@ -13,20 +13,6 @@ end
 
 M:load_variables()
 
-function M.add_cmp_source(source, index)
-  local has_cmp, cmp = pcall(require, "cmp")
-  if has_cmp then
-    if index == nil then
-      index = 1
-    end
-    local config = cmp.get_config()
-    table.insert(config.sources, index, {
-      name = source,
-    })
-    cmp.setup(config)
-  end
-end
-
 M.lazy_config = {
   spec = {
     { import = "nvvim.plugins" },

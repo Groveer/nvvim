@@ -79,12 +79,12 @@ return {
       nvui.diagnostic_config()
     end
 
-    local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    local has_cmp, blink_cmp = pcall(require, "blink.cmp")
     local capabilities = vim.tbl_deep_extend(
       "force",
       {},
       vim.lsp.protocol.make_client_capabilities(),
-      has_cmp and cmp_nvim_lsp.default_capabilities() or {}
+      has_cmp and blink_cmp.get_lsp_capabilities({}, false) or {}
     )
     capabilities.textDocument.completion.completionItem = {
       documentationFormat = { "markdown", "plaintext" },

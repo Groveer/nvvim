@@ -9,16 +9,4 @@ return {
   config = function(_, opts)
     require("copilot").setup(opts)
   end,
-  dependencies = {
-    {
-      "zbirenbaum/copilot-cmp",
-      dependencies = {
-        "hrsh7th/nvim-cmp",
-      },
-      config = function(_, opts)
-        require("nvvim.configs").add_cmp_source("copilot", 1)
-        require("copilot_cmp").setup(opts)
-      end,
-    },
-  },
 }
