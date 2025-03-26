@@ -78,6 +78,14 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     "fzf-native",
+    keymap = {
+      fzf = {
+        ["ctrl-f"] = "preview-page-down",
+        ["ctrl-b"] = "preview-page-up",
+        ["shift-down"] = "half-page-down",
+        ["shift-up"] = "half-page-up",
+      },
+    },
   },
   config = function(_, opts)
     require("fzf-lua").setup(opts)
