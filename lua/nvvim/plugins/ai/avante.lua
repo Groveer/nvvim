@@ -25,6 +25,9 @@ local avante_complete_code = "完成以下用 " .. vim.bo.filetype .. " 编写�
 local avante_add_docstring = "为以下代码添加文档字符串"
 local avante_fix_bugs = "修复以下代码中的错误（如果有）"
 local avante_add_tests = "为以下代码实现测试"
+
+local build_cmd = not require("nvvim.configs").is_windows and "make" or "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+
 return {
   "yetone/avante.nvim",
   keys = {
@@ -143,8 +146,7 @@ return {
   },
   cmd = "AvanteAsk",
   version = false,
-  build = "make",
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false", -- for windows
+  build = build_cmd,
   opts = {
     provider = "copilot",
     copilot = {
