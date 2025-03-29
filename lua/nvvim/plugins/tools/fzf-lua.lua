@@ -77,8 +77,13 @@ return {
   },
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
-    "fzf-native",
     keymap = {
+      builtin = {
+        ["<C-f>"] = "preview-page-down",
+        ["<C-b>"] = "preview-page-up",
+        ["<S-down>"] = "half-page-down",
+        ["<S-up>"] = "half-page-up",
+      },
       fzf = {
         ["ctrl-f"] = "preview-page-down",
         ["ctrl-b"] = "preview-page-up",
