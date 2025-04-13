@@ -149,6 +149,9 @@ return {
   version = false,
   build = build_cmd,
   opts = {
+    file_selector = {
+      provider = "fzf",
+    },
     behaviour = {
       enabled_claude_text_editor_tool_mode = true,
     },
