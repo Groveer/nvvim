@@ -153,6 +153,7 @@ return {
       provider = "fzf",
     },
     behaviour = {
+      enable_cursor_planning_mode = true,
       enabled_claude_text_editor_tool_mode = true,
     },
     provider = "copilot",
