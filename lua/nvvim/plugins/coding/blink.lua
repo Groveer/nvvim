@@ -62,7 +62,17 @@ return {
     },
 
     cmdline = {
-      completion = { menu = { auto_show = true } },
+      keymap = {
+        preset = "inherit",
+      },
+      completion = {
+        menu = {
+          auto_show = true,
+        },
+        ghost_text = {
+          enabled = true,
+        },
+      },
     },
 
     -- Default list of enabled providers defined so that you can extend it
