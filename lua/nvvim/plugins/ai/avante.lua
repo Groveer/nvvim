@@ -26,7 +26,8 @@ local avante_add_docstring = "为以下代码添加文档字符串"
 local avante_fix_bugs = "修复以下代码中的错误（如果有）"
 local avante_add_tests = "为以下代码实现测试"
 
-local build_cmd = not require("nvvim.configs").is_windows and "make" or "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+local build_cmd = not require("nvvim.configs").is_windows and "make"
+  or "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
 
 return {
   "yetone/avante.nvim",
@@ -148,6 +149,9 @@ return {
   version = false,
   build = build_cmd,
   opts = {
+    behaviour = {
+      enabled_claude_text_editor_tool_mode = true,
+    },
     provider = "copilot",
     copilot = {
       -- model = "claude-3.5-sonnet",
@@ -171,32 +175,6 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "zbirenbaum/copilot.lua", -- for providers='copilot'
-    {
-      -- support for image pasting
-      "HakonHarnes/img-clip.nvim",
-      keys = {
-        {
-          "<leader>ip",
-          function()
-            return vim.bo.filetype == "AvanteInput" and require("avante.clipboard").paste_image()
-              or require("img-clip").paste_image()
-          end,
-          desc = "clip: paste image",
-        },
-      },
-      opts = {
-        -- recommended settings
-        default = {
-          embed_image_as_base64 = false,
-          prompt_for_file_name = false,
-          drag_and_drop = {
-            insert_mode = true,
-          },
-          -- required for Windows users
-          use_absolute_path = true,
-        },
-      },
-    },
   },
   config = function(_, opts)
     vim.cmd("AvanteBuild")
