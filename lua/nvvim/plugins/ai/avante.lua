@@ -157,12 +157,20 @@ return {
       enabled_claude_text_editor_tool_mode = true,
     },
     provider = "copilot",
+    cursor_applying_provider = "groq",
     copilot = {
       -- model = "claude-3.5-sonnet",
       model = "claude-3.7-sonnet",
       -- model = "DeepSeek-R1",
     },
     vendors = {
+      groq = { -- define groq provider
+        __inherited_from = "openai",
+        api_key_name = "GROQ_API_KEY",
+        endpoint = "https://api.groq.com/openai/v1/",
+        model = "llama-3.3-70b-versatile",
+        max_completion_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
+      },
       deepseek = {
         __inherited_from = "openai",
         endpoint = "http://localhost:8000/v1",
