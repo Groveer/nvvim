@@ -1,6 +1,8 @@
 local build_cmd = not require("nvvim.configs").is_windows and "make"
   or "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
 
+local avante_fix_build = "运行命令编译项目，若存在编译错误或警告，给出修复代码，修复后不要重复运行命令"
+
 return {
   "yetone/avante.nvim",
   keys = {
@@ -27,6 +29,14 @@ return {
       end,
       desc = "avante: edit",
       mode = { "n", "v" },
+    },
+    {
+      "<leader>ab",
+      function()
+        require("avante.api").ask({ question = avante_fix_build })
+      end,
+      mode = { "n", "v" },
+      desc = "Fix Build Errors(ask)",
     },
   },
   cmd = "AvanteAsk",
