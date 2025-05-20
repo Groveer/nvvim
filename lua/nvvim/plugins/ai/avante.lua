@@ -1,8 +1,10 @@
 local build_cmd = not require("nvvim.configs").is_windows and "make"
   or "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
 
-local avante_fix_build = "运行命令编译项目，若存在编译错误或警告，给出修复代码，修复后不要重复运行命令。"
-local avante_git_commit = "检查项目本次修改的内容，参考历史的提交格式，暂存项目并编写提交信息，提交信息尽量简单清晰。"
+local avante_fix_build =
+  "运行命令编译项目，若存在编译错误或警告，给出修复代码，修复后不要重复运行命令。"
+local avante_git_commit =
+  "检查项目本次修改的内容，参考历史的提交格式，暂存项目并编写提交信息，提交信息尽量简单清晰。"
 
 return {
   "yetone/avante.nvim",
@@ -51,16 +53,13 @@ return {
   cmd = "AvanteAsk",
   version = false,
   build = build_cmd,
+  -- commit = "f9aa75459d403d9e963ef2647c9791e0dfc9e5f9",
   opts = {
-    file_selector = {
-      provider = "fzf",
-    },
     behaviour = {
       enable_cursor_planning_mode = true,
-      enabled_claude_text_editor_tool_mode = true,
+      jump_result_buffer_on_finish = true,
     },
     provider = "copilot",
-    -- provider = "openai",
     cursor_applying_provider = "groq",
     copilot = {
       -- model = "claude-3.5-sonnet",
@@ -74,6 +73,12 @@ return {
         endpoint = "https://api.groq.com/openai/v1/",
         model = "llama-3.3-70b-versatile",
         max_completion_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
+      },
+      openrouter = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "google/gemini-2.0-flash-001",
       },
     },
   },
