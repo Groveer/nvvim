@@ -64,7 +64,8 @@ return {
     copilot = {
       -- model = "claude-3.5-sonnet",
       -- model = "claude-3.7-sonnet",
-      model = "gemini-2.5-pro",
+      model = "claude-sonnet-4",
+      -- model = "gemini-2.5-pro",
       -- model = "DeepSeek-R1",
     },
     vendors = {
