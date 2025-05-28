@@ -1,5 +1,7 @@
 return {
-  { import = "nvvim.plugins.ai.avante" },
+  -- { import = "nvvim.plugins.ai.avante" },
+  { import = "nvvim.plugins.ai.codecompanion-cmp" },
+  { import = "nvvim.plugins.ai.codecompanion" },
   { import = "nvvim.plugins.ai.copilot-cmp" },
   { import = "nvvim.plugins.ai.copilot" },
   { import = "nvvim.plugins.coding.blink" },
