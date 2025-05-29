@@ -9,18 +9,9 @@ return {
     },
   },
   opts = {
-    adapters = {
-      copilot = function()
-        return require("codecompanion.adapters").extend("copilot", {
-          schema = {
-            model = {
-              -- default = "claude-3.7-sonnet",
-              default = "claude-sonnet-4",
-              -- default = "gemini-2.5-pro",
-            },
-          },
-        })
-      end,
+    opts = {
+      language = "Chinese",
+      send_code = true,
     },
     display = {
       action_palette = {
@@ -29,6 +20,12 @@ return {
     },
     strategies = {
       chat = {
+        adapter = {
+          name = "copilot",
+          -- model = "claude-3.7-sonnet",
+          model = "claude-sonnet-4",
+          -- model = "gemini-2.5-pro",
+        },
         slash_commands = {
           ["file"] = {
             opts = { provider = "fzf_lua" },
