@@ -24,6 +24,7 @@ return {
     opts = {
       language = "Chinese",
       send_code = true,
+      completion_provider = "blink"
     },
     display = {
       action_palette = {
@@ -40,10 +41,22 @@ return {
           -- model = "gemini-2.5-pro",
         },
         slash_commands = {
+          ["buffer"] = {
+            opts = { provider = "fzf_lua" },
+          },
+          ["fetch"] = {
+            opts = { provider = "fzf_lua" },
+          },
           ["file"] = {
             opts = { provider = "fzf_lua" },
           },
-          ["buffer"] = {
+          ["help"] = {
+            opts = { provider = "fzf_lua" },
+          },
+          ["image"] = {
+            opts = { provider = "fzf_lua" },
+          },
+          ["symbols"] = {
             opts = { provider = "fzf_lua" },
           },
         },
