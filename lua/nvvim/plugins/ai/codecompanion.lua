@@ -25,6 +25,7 @@ return {
       language = "Chinese",
       send_code = true,
       completion_provider = "blink",
+      requires_approval = false,
     },
     prompt_library = {
       ["Generate a Commit Message"] = {
@@ -127,6 +128,7 @@ The body line cannot exceed 80 characters.
   },
 
   config = function(_, opts)
+    vim.g.codecompanion_auto_tool_mode = true
     require("codecompanion").setup(opts)
   end,
 }
