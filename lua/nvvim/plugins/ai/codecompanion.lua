@@ -24,7 +24,54 @@ return {
     opts = {
       language = "Chinese",
       send_code = true,
-      completion_provider = "blink"
+      completion_provider = "blink",
+    },
+    prompt_library = {
+      ["Generate a Commit Message"] = {
+        strategy = "chat",
+        description = "Generate a commit message",
+        opts = {
+          index = 10,
+          is_default = true,
+          is_slash_cmd = true,
+          short_name = "commit",
+          user_prompt = true,
+          auto_submit = true,
+        },
+        prompts = {
+          {
+            role = "user",
+            content = function()
+              return string.format(
+                [[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
+
+```diff
+%s
+```
+
+Commit content should be written in the following format, And use markdown syntax to display:
+
+```text
+<type>[optional scope]: <english description>
+
+[English body]
+
+[Chinese body]
+
+Log: [short description of the change use chinese language]
+```
+
+The body line cannot exceed 80 characters.
+]],
+                vim.fn.system("git --no-pager diff --no-ext-diff --staged")
+              )
+            end,
+            opts = {
+              contains_code = true,
+            },
+          },
+        },
+      },
     },
     display = {
       action_palette = {
