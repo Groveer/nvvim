@@ -15,3 +15,16 @@ autocmd("BufReadPost", {
     end
   end,
 })
+
+autocmd("VimEnter", {
+  callback = function()
+    local spell_dir = vim.fn.stdpath("config") .. "/spell"
+    local langs = vim.fn.glob(spell_dir .. "/*.add", false, true)
+    for _, fname in ipairs(langs) do
+      if vim.fn.filereadable(fname) == 1 then
+        vim.cmd("silent! mkspell! " .. fname)
+      end
+    end
+  end
+})
+

@@ -63,7 +63,7 @@ opt.termguicolors = true
 
 -- spell check
 opt.spell = true
-opt.spelllang = { "en_us", "cjk" }
+opt.spelllang = { "en", "cjk" }
 opt.spelloptions = "camel"
 
 -- filetype for plantuml
