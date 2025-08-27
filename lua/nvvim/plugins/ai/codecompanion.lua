@@ -63,6 +63,8 @@ Log: [short description of the change use chinese language]
 ```
 
 The body line cannot exceed 80 characters.
+
+Submit information content based on the user's intention below:
 ]],
                 vim.fn.system("git --no-pager diff --no-ext-diff --staged")
               )
