@@ -62,6 +62,7 @@ return {
     },
 
     cmdline = {
+      enabled = false,
       keymap = {
         preset = "inherit",
       },
