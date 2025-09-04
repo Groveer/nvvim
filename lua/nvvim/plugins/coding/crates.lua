@@ -4,7 +4,6 @@ return {
   opts = {
     lsp = {
       enabled = true,
-      on_attach = require("nvvim.configs").lsp_on_attach,
       actions = true,
       completion = true,
       hover = true,

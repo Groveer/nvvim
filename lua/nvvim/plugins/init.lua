@@ -17,7 +17,6 @@ return {
   { import = "nvvim.plugins.editor.trailspace" },
   { import = "nvvim.plugins.format.conform" },
   { import = "nvvim.plugins.lsp.aerial" },
-  { import = "nvvim.plugins.lsp.lspconfig" },
   { import = "nvvim.plugins.lsp.mason" },
   { import = "nvvim.plugins.lsp.rustaceanvim" },
   { import = "nvvim.plugins.render.colorizer" },
