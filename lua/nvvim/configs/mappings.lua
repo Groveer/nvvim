@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
+map("i", "<C-a>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
@@ -21,13 +21,11 @@ map("n", "<leader>n", "<CMD>set nu!<CR>", { desc = "Toggle line number" })
 map("n", "<leader>rn", "<CMD>set rnu!<CR>", { desc = "Toggle relative number" })
 
 -- general
-map("i", "jk", "<ESC>")
 map({ "n", "v" }, ";", ":", { desc = "Nvim CMD enter command mode" })
 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Nvim Move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Nvim Move line up" })
 
-map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 map("i", "<C-s>", "<Esc><CMD>w!<CR>", { desc = "File Save file" })
 map("n", "<A-S-q>", "<CMD>q!<CR>", { desc = "Nvim Force quit" })
 map("i", "<A-S-q>", "<Esc><CMD>q!<CR>", { desc = "Nvim Force quit" })
