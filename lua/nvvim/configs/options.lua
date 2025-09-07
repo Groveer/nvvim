@@ -1,50 +1,73 @@
 local opt = vim.opt
-local o = vim.o
 local g = vim.g
-local command = vim.api.nvim_command
+local filetype = vim.filetype
 
 -------------------------------------- options ------------------------------------------
-o.laststatus = 3
-o.showmode = false
+-- Set status line to always be visible and only the last window
+opt.laststatus = 3
+-- Don't show the mode, since it's already in the status line plugin
+opt.showmode = false
 
-o.clipboard = "unnamedplus"
-o.cursorline = true
-o.cursorlineopt = "number"
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+  opt.clipboard = "unnamedplus"
+end)
+-- Show which line your cursor is on
+opt.cursorline = true
+-- Hightlight cursorline and number
+opt.cursorlineopt = "both"
 
--- Indenting
-o.expandtab = true
-o.shiftwidth = 2
-o.smartindent = true
-o.tabstop = 2
-o.softtabstop = 2
+-- Use spaces instead of tabs
+opt.expandtab = true
+-- Enable smart indentation
+opt.smartindent = true
+-- Number of spaces that a <Tab> counts for
+opt.tabstop = 2
 
+-- Use space instead of `end of buffer ~`
 opt.fillchars = { eob = " " }
-o.ignorecase = true
-o.smartcase = true
-o.mouse = "a"
 
--- Numbers
-o.number = true
-o.numberwidth = 2
-o.ruler = false
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+opt.ignorecase = true
+opt.smartcase = true
 
--- disable nvim intro
+-- Enable mouse support in all modes
+opt.mouse = "a"
+
+-- Enable line numbers
+opt.number = true
+-- Set number column width to 2
+opt.numberwidth = 2
+-- Don't show position of the cursor, since it's already in the status line plugin
+opt.ruler = false
+
+-- Disable nvim intro
 opt.shortmess:append("sI")
 
-o.signcolumn = "yes"
-o.splitbelow = true
-o.splitright = true
-o.timeoutlen = 400
-o.undofile = true
+-- Keep signcolumn on by default
+opt.signcolumn = "yes"
+-- New horizontally split windows will be below the current window
+opt.splitbelow = true
+-- New vertically split windows will be to the right of the current window
+opt.splitright = true
 
--- interval for writing swap file to disk, also used by gitsigns
-o.updatetime = 250
+-- Decrease mapped sequence wait time
+opt.timeoutlen = 400
 
--- go to previous/next line with h,l,left arrow and right arrow
+-- Save undo history
+opt.undofile = true
+
+-- Interval for writing swap file to disk, also used by gitsigns
+opt.updatetime = 250
+
+-- Go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append("<>[]hl")
 
--- disable some default providers
+-- Disable some default providers
 g.loaded_node_provider = 0
 g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
@@ -52,32 +75,37 @@ g.loaded_ruby_provider = 0
 
 -- set leader key
 g.mapleader = " "
--- add yours here!
-o.cursorlineopt = "both" -- to enable cursorline!
 
--- avante.nvim recommanded options
-o.laststatus = 3
-o.splitkeep = "screen"
-
+-- Enable 24-bit RGB color in the TUI
 opt.termguicolors = true
 
--- spell check
+-- Enable spell check
 opt.spell = true
 opt.spelllang = { "en", "cjk" }
 opt.spelloptions = "camel"
 
+-- Define custom filetypes
+filetype.add({ extension = { ["json"] = "jsonc" } })
 -- filetype for plantuml
-command("au BufNewFile,BufRead *.puml setfiletype plantuml")
-command("au BufNewFile,BufRead *.pu setfiletype plantuml")
-command("au BufNewFile,BufRead *.plantuml setfiletype plantuml")
-command("au BufNewFile,BufRead *.uml setfiletype plantuml")
-command("au BufNewFile,BufRead *.iuml setfiletype plantuml")
+filetype.add({
+  extension = {
+    ["puml"] = "plantuml",
+    ["pu"] = "plantuml",
+    ["plantuml"] = "plantuml",
+    ["uml"] = "plantuml",
+    ["iuml"] = "plantuml",
+  },
+})
 -- filetype for qml
-command("au BufNewFile,BufRead *.qml setfiletype qmljs")
+filetype.add({ extension = { ["qml"] = "qmljs" } })
 -- filetype for image
-command("au BufNewFile,BufRead *.png setfiletype image")
-command("au BufNewFile,BufRead *.jpg setfiletype image")
-command("au BufNewFile,BufRead *.jpeg setfiletype image")
-command("au BufNewFile,BufRead *.gif setfiletype image")
-command("au BufNewFile,BufRead *.webp setfiletype image")
-command("au BufNewFile,BufRead *.avif setfiletype image")
+filetype.add({
+  extension = {
+    png = 'image',
+    jpg = 'image',
+    jpeg = 'image',
+    gif = 'image',
+    webp = 'image',
+    avif = 'image',
+  },
+})
