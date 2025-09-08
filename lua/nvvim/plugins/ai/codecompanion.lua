@@ -77,12 +77,18 @@ Submit information content based on the user's intention below:
       },
     },
     display = {
+      chat = {
+        start_in_insert_mode = true,
+      },
       action_palette = {
         provider = "fzf_lua",
       },
     },
     strategies = {
       chat = {
+        opts = {
+          completion_provider = "blink", -- blink|cmp|coc|default
+        },
         adapter = {
           name = "copilot",
           model = "gpt-4.1",
