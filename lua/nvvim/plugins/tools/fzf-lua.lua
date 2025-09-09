@@ -59,6 +59,14 @@ return {
       desc = "Fzf Find marks",
     },
     {
+      "<leader>fc",
+      function()
+        require("fzf-lua").changes()
+      end,
+      mode = "n",
+      desc = "Fzf Find changes",
+    },
+    {
       "<leader>gc",
       function()
         require("fzf-lua").git_commits()
