@@ -55,16 +55,8 @@ M.ui = {
 M.nvdash = {
   load_on_startup = true,
   buttons = {
-    {
-      txt = "  Recent Files",
-      keys = "Spc f o",
-      cmd = ":lua require('fzf-lua-frecency').frecency({ cwd_only = false })",
-    },
-    {
-      txt = "  Find File",
-      keys = "Spc f f",
-      cmd = ":lua require('fzf-lua-frecency').frecency({ cwd_only = true })",
-    },
+    { txt = "  Recent Files", keys = "Spc f o", cmd = "FzfLua oldfiles" },
+    { txt = "  Find File", keys = "Spc f f", cmd = "FzfLua files" },
     { txt = "󰈭  Find Word", keys = "Spc f w", cmd = "FzfLua live_grep" },
     { txt = "󱥚  Themes", keys = "Spc t h", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },

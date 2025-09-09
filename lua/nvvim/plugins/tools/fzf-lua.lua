@@ -5,7 +5,7 @@ return {
     {
       "<leader>fo",
       function()
-        require("fzf-lua-frecency").frecency({ cwd_only = false })
+        require("fzf-lua").oldfiles()
       end,
       mode = "n",
       desc = "Fzf Find old file",
@@ -37,7 +37,7 @@ return {
     {
       "<leader>ff",
       function()
-        require("fzf-lua-frecency").frecency({ cwd_only = true })
+        require("fzf-lua").files()
       end,
       mode = "n",
       desc = "Fzf Find files",
@@ -75,10 +75,7 @@ return {
       desc = "Fzf Git status",
     },
   },
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-    "elanmed/fzf-lua-frecency.nvim",
-  },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     -- 全局设置适用于所有 fzf-lua 命令
     global = {
@@ -152,6 +149,6 @@ return {
   },
   config = function(_, opts)
     require("fzf-lua").setup(opts)
-    require("fzf-lua").register_ui_select()
+    vim.cmd("FzfLua register_ui_select")
   end,
 }
