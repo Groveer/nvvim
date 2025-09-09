@@ -158,27 +158,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --   lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
     -- end
 
-    if client:supports_method("textDocument/switchSourceHeader") then
+    if client.name == "clangd" then
       local function switch_source_header()
+        local method_name = "textDocument/switchSourceHeader"
         local bufnr = vim.api.nvim_get_current_buf()
-        local params = {
-          uri = vim.uri_from_bufnr(bufnr),
-        }
-        client:request("textDocument/switchSourceHeader", params, function(err, result, ctx)
+        local params = vim.lsp.util.make_text_document_params(bufnr)
+        client:request(method_name, params, function(err, result)
           if err then
-            vim.notify(string.format("Error on LSP request '%s': %s", ctx.method, err.message), vim.log.levels.ERROR)
+            vim.notify(err.message, vim.log.levels.ERROR)
+          end
+          if not result then
+            vim.notify("Corresponding file could not be determined", vim.log.levels.WARN)
             return
           end
-
-          if not result or type(result) ~= "string" or result == "" then
-            vim.notify("Corresponding file could not be determined by the language server.", vim.log.levels.WARN)
-            return
-          end
-
-          vim.api.nvim_command("edit " .. vim.uri_to_fname(result))
+          vim.cmd.edit(vim.uri_to_fname(result))
         end, bufnr)
       end
-      map("n", "gs", switch_source_header, { noremap = true, silent = true, desc = "switch Source/Header" })
+      map("n", "gs", switch_source_header, { noremap = true, silent = true, desc = "Lsp Switch C/C++ Source/Header" })
     end
 
     if client.name == "rust-analyzer" then
