@@ -21,6 +21,24 @@ return {
     "CodeCompanionChat",
   },
   opts = {
+    adapters = {
+      http = {
+        uniontech = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = {
+              url = "https://ai.uniontech.com",
+              api_key = "UT_KEY",
+              chat_url = "/api/v1/chat/completions",
+            },
+            schema = {
+              model = {
+                default = "kimi-k2",
+              },
+            },
+          })
+        end,
+      },
+    },
     opts = {
       language = "Chinese",
       send_code = true,
@@ -90,8 +108,8 @@ Submit information content based on the user's intention below:
           completion_provider = "blink", -- blink|cmp|coc|default
         },
         adapter = {
-          name = "copilot",
-          model = "gpt-4.1",
+          name = "uniontech",
+          model = "kimi-k2",
           -- model = "claude-3.7-sonnet",
           -- model = "claude-sonnet-4",
           -- model = "gemini-2.5-pro",
