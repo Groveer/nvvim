@@ -8,7 +8,6 @@ return {
   { import = "nvvim.plugins.coding.crates" },
   { import = "nvvim.plugins.coding.luasnip" },
   { import = "nvvim.plugins.coding.plantuml" },
-  { import = "nvvim.plugins.editor.git-conflict" },
   { import = "nvvim.plugins.editor.gitsigns" },
   { import = "nvvim.plugins.editor.smartyank" },
   { import = "nvvim.plugins.editor.todo-comments" },
