@@ -85,10 +85,9 @@ M.base46 = {
     "notify",
     "todo",
     "navic",
-    "rainbowdelimiters",
-    "avante",
     "diffview",
     "git-conflict",
+    "semantic_tokens",
   },
   hl_override = {
     NvDashButtons = { fg = "yellow" },
@@ -98,8 +97,6 @@ M.base46 = {
 
 M.lsp = {
   signature = false,
-  hover = false,
-  semantic_tokens = false,
 }
 
 M.term = {
