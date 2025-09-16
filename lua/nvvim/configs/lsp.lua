@@ -40,7 +40,7 @@ vim.lsp.config("*", {
 })
 
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
-vim.lsp.enable({ "clangd", "lua_ls", "pylsp", "html", "bashls", "jsonls", "neocmake", "taplo", "ts_ls" })
+vim.lsp.enable({ "clangd", "emmylua_ls", "pylsp", "html", "bashls", "jsonls", "neocmake", "taplo", "ts_ls" })
 
 -- Disable default lsp keymap
 vim.keymap.set("n", "gr", "gr", { noremap = true, nowait = true })

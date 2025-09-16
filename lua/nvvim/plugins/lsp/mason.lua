@@ -7,7 +7,7 @@ return {
     -- https://mason-registry.dev/registry/list
     ensure_installed = {
       -- lua stuff
-      "lua-language-server",
+      "emmylua_ls",
       "stylua",
 
       -- web dev stuff
