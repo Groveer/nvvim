@@ -86,7 +86,6 @@ M.base46 = {
     "todo",
     "navic",
     "diffview",
-    "git-conflict",
     "semantic_tokens",
   },
   hl_override = {
