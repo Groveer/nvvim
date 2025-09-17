@@ -7,9 +7,6 @@ return {
           border = "rounded",
         },
       },
-      server = {
-        on_attach = require("nvvim.configs.lsp").on_attach,
-      },
     }
   end,
   ft = "rust",

@@ -16,6 +16,7 @@ M.require_servers = {
   "neocmake",
   "taplo",
   "ts_ls",
+  "rust_analyzer",
 }
 
 local has_nvui, nvui = pcall(require, "nvchad.lsp")
@@ -72,11 +73,7 @@ M.on_attach = function(client, bufnr)
 
   if client:supports_method(lsp.protocol.Methods.textDocument_codeAction) then
     map({ "n", "v" }, "ga", function()
-      if client.name == "rust-analyzer" then
-        vim.cmd.RustLsp("codeAction")
-      else
-        fzf.lsp_code_actions()
-      end
+      fzf.lsp_code_actions()
     end, opts("Lsp Code action"))
   end
 
@@ -102,11 +99,7 @@ M.on_attach = function(client, bufnr)
 
   if client:supports_method(lsp.protocol.Methods.textDocument_hover) then
     map("n", "K", function()
-      if client.name == "rust-analyzer" then
-        vim.cmd.RustLsp({ "hover", "actions" })
-      else
-        lsp.buf.hover()
-      end
+      lsp.buf.hover()
     end, opts("Lsp Hover information"))
   end
 
@@ -153,12 +146,6 @@ M.on_attach = function(client, bufnr)
   --
   --   lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
   -- end
-
-  if client.name == "rust-analyzer" then
-    map("n", "ge", function()
-      vim.cmd.RustLsp({ "explainError", "current" })
-    end, opts("Lsp RustLsp explain error"))
-  end
 
   map("n", "go", "<cmd>AerialToggle!<CR>", opts("Lsp Show outline"))
   map("n", "[", "<cmd>AerialPrev<CR>", opts("Lsp Previous symbol"))
