@@ -150,7 +150,6 @@ Submit information content based on the user's intention below:
   dependencies = {
     "ravitemer/mcphub.nvim",
     "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
   },
 
   config = function(_, opts)

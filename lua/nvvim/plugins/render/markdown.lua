@@ -14,10 +14,13 @@ return {
   opts = {
     file_types = fts,
     latex = { enabled = false },
+    html = { enabled = false },
+    yaml = { enabled = false },
     completions = {
       lsp = { enabled = true },
       blink = { enabled = true },
     },
+    restart_highlighter = true,
   },
   ft = fts,
   config = function(_, opts)
@@ -25,7 +28,6 @@ return {
     require("render-markdown").setup(opts)
   end,
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   }, -- if you prefer nvim-web-devicons
 }
