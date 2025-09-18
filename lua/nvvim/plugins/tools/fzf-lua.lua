@@ -100,6 +100,9 @@ return {
 
     grep = {
       -- 专门针对 live_grep 的设置
+      fzf_opts = {
+        ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-history",
+      },
       live_grep = {
         rg_opts = "--hidden --follow --smart-case", -- ripgrep 基础选项
         rg_extra_args = function()
@@ -127,6 +130,9 @@ return {
     },
 
     files = {
+      fzf_opts = {
+        ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-history",
+      },
       -- 文件搜索的忽略设置
       file_ignore_patterns = {
         "^node_modules/",
@@ -141,17 +147,11 @@ return {
       },
     },
     keymap = {
-      builtin = {
-        ["<C-f>"] = "preview-page-down",
-        ["<C-b>"] = "preview-page-up",
-        ["<S-down>"] = "half-page-down",
-        ["<S-up>"] = "half-page-up",
-      },
       fzf = {
         ["ctrl-f"] = "preview-page-down",
         ["ctrl-b"] = "preview-page-up",
-        ["shift-down"] = "half-page-down",
-        ["shift-up"] = "half-page-up",
+        ["down"] = "next-history",
+        ["up"] = "prev-history",
       },
     },
   },
