@@ -40,6 +40,8 @@ return {
       -- meson stuff
       "mesonlsp",
 
+      "copilot-language-server",
+
       "taplo",
     },
 

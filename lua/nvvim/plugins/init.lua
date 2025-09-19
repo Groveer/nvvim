@@ -1,8 +1,6 @@
 return {
   { import = "nvvim.plugins.ai.codecompanion-cmp" },
   { import = "nvvim.plugins.ai.codecompanion" },
-  { import = "nvvim.plugins.ai.copilot-cmp" },
-  { import = "nvvim.plugins.ai.copilot" },
   { import = "nvvim.plugins.ai.mcphub" },
   { import = "nvvim.plugins.coding.blink" },
   { import = "nvvim.plugins.coding.crates" },

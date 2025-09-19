@@ -8,6 +8,7 @@ local M = {}
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 M.require_servers = {
   "clangd",
+  "copilot",
   "emmylua_ls",
   "pylsp",
   "html",
