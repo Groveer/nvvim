@@ -157,6 +157,22 @@ M.on_attach = function(client, bufnr)
   if has_navic and client.server_capabilities and client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
   end
+  local function restart_lsp_clients()
+    local clients = lsp.get_clients({ bufnr = bufnr })
+    for _, _client in ipairs(clients) do
+      lsp.stop_client(_client.id)
+    end
+
+    vim.defer_fn(function()
+      vim.cmd("edit") -- Force buffer reload
+    end, 100)
+  end
+
+  vim.api.nvim_create_user_command(
+    "LspRestart",
+    restart_lsp_clients,
+    { desc = "Restart LSP clients for current buffer" }
+  )
 end
 
 vim.lsp.config("*", {
