@@ -17,6 +17,7 @@ M.require_servers = {
   "taplo",
   "ts_ls",
   "rust_analyzer",
+  "mesonlsp",
 }
 
 local has_nvui, nvui = pcall(require, "nvchad.lsp")

@@ -37,6 +37,9 @@ return {
       -- cmake stuff
       "neocmakelsp",
 
+      -- meson stuff
+      "mesonlsp",
+
       "taplo",
     },
 
