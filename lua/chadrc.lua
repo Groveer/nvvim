@@ -4,6 +4,105 @@
 ---@class ChadrcConfig
 local M = {}
 
+local lsp_ext_icons = {
+  copilot = "",
+  ["render-markdown"] = "",
+}
+
+local function statusline_navic_config()
+  if next(vim.lsp.get_clients()) == nil then
+    return ""
+  end
+  local ok, navic = pcall(require, "nvim-navic")
+  if not ok then
+    return ""
+  end
+  return " %#StText# " .. navic.get_location()
+end
+
+local function statusline_lsp_config()
+  local lsp_index = 1
+  local lsp_names = {}
+  local timer = nil
+  local last_buf = 0
+
+  local function update_lsp_names()
+    local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
+    local non_copilot, copilot = {}, {}
+    for _, client in ipairs(clients) do
+      if client.name == "copilot" then
+        table.insert(copilot, client)
+      else
+        table.insert(non_copilot, client)
+      end
+    end
+    local result = {}
+    -- Make sure copilot is always at the end
+    for _, c in ipairs(non_copilot) do
+      table.insert(result, c)
+    end
+    for _, c in ipairs(copilot) do
+      table.insert(result, c)
+    end
+    lsp_names = result
+    if lsp_index > #lsp_names then
+      lsp_index = 1
+    end
+  end
+
+  local function start_timer()
+    if timer then
+      return
+    end
+    timer = vim.uv.new_timer()
+    if not timer then
+      vim.notify("Failed to create timer", vim.log.levels.ERROR)
+      return
+    end
+    timer:start(
+      0,
+      5000,
+      vim.schedule_wrap(function()
+        update_lsp_names()
+        if #lsp_names > 0 then
+          lsp_index = lsp_index % #lsp_names + 1
+        end
+      end)
+    )
+  end
+
+  return function()
+    local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+    local lsp_hl = "%#St_Lsp#"
+    -- Reset lsp_index and update lsp_names when switching buffers
+    if last_buf ~= bufnr then
+      lsp_index = 1
+      last_buf = bufnr
+      update_lsp_names()
+    end
+    start_timer()
+    if #lsp_names == 0 then
+      return ""
+    end
+    local client = lsp_names[lsp_index] or lsp_names[1]
+    local icon = lsp_ext_icons[client.name]
+    if icon then
+      return lsp_hl .. icon .. " " .. client.name .. " "
+    end
+    local ok, icons = pcall(require, "nvim-web-devicons")
+    if not ok then
+      return lsp_hl .. "   " .. client.name .. " "
+    end
+    icon, lsp_hl = icons.get_icon_by_filetype(vim.bo.filetype, { default = false })
+    if not icon then
+      lsp_hl = "%#St_Lsp#"
+      return lsp_hl .. "   " .. client.name .. " "
+    end
+    return "%#" .. lsp_hl .. "#" .. icon .. " " .. client.name .. " "
+  end
+end
+
 M.ui = {
   cmp = {
     icons_left = true, -- only for non-atom styles!
@@ -18,35 +117,8 @@ M.ui = {
     theme = "vscode_colored",
     order = { "mode", "file", "git", "navic", "%=", "diagnostics", "cursor", "lsp", "cwd" },
     modules = {
-      navic = function()
-        if next(vim.lsp.get_clients()) == nil then
-          return ""
-        end
-        local ok, navic = pcall(require, "nvim-navic")
-        if not ok then
-          return ""
-        end
-        return " %#StText# " .. navic.get_location()
-      end,
-      lsp = function()
-        if rawget(vim, "lsp") then
-          for _, client in ipairs(vim.lsp.get_clients()) do
-            if client.attached_buffers[vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)] then
-              local ok, icons = pcall(require, "nvim-web-devicons")
-              if not ok then
-                return "%#St_Lsp#" .. "   " .. client.name .. " "
-              end
-              local icon, hl = icons.get_icon_by_filetype(vim.bo.filetype, { default = false })
-              if not icon then
-                return "%#St_Lsp#" .. "   " .. client.name .. " "
-              end
-              return "%#" .. hl .. "#" .. icon .. " " .. client.name .. " "
-            end
-          end
-        end
-
-        return ""
-      end,
+      navic = statusline_navic_config,
+      lsp = statusline_lsp_config(),
       cursor = "%#St_pos_text# %l:%c  ",
     },
   },
