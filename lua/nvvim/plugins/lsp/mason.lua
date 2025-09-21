@@ -47,6 +47,8 @@ return {
 
     ui = {
       border = "rounded",
+      width = 0.8,
+      height = 0.8,
       icons = require("nvvim.configs").icons.mason,
     },
 
