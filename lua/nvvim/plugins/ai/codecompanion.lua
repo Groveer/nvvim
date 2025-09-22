@@ -147,6 +147,7 @@ Submit information content based on the user's intention below:
   dependencies = {
     "ravitemer/mcphub.nvim",
     "nvim-lua/plenary.nvim",
+    "HakonHarnes/img-clip.nvim",
   },
 
   config = function(_, opts)
