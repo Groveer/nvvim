@@ -127,9 +127,6 @@ Submit information content based on the user's intention below:
           ["help"] = {
             opts = { provider = "fzf_lua" },
           },
-          ["image"] = {
-            opts = { provider = "fzf_lua" },
-          },
           ["symbols"] = {
             opts = { provider = "fzf_lua" },
           },
