@@ -150,8 +150,8 @@ M.nvdash = {
 }
 
 M.base46 = {
-  theme = "tokyonight",
-  theme_toggle = { "tokyonight", "tokyonight" },
+  theme = "chadracula-evondev",
+  theme_toggle = { "chadracula-evondev", "chadracula-evondev" },
   transparency = true,
   integrations = {
     "notify",
