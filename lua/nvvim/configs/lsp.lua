@@ -64,12 +64,7 @@ M.on_attach = function(client, bufnr)
 
   if client:supports_method(lsp.protocol.Methods.textDocument_rename) then
     map("n", "gr", function()
-      local has_nvchad, renamer = pcall(require, "nvchad.lsp.renamer")
-      if has_nvchad then
-        renamer()
-      else
-        lsp.buf.rename()
-      end
+      lsp.buf.rename()
     end, opts("Lsp Renamer"))
   end
 
