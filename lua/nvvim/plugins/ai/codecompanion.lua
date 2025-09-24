@@ -131,6 +131,21 @@ Submit information content based on the user's intention below:
             opts = { provider = "fzf_lua" },
           },
         },
+        tools = {
+          opts = {
+            system_prompt = {
+              enabled = true, -- Enable the tools system prompt?
+              replace_main_system_prompt = false, -- Replace the main system prompt with the tools system prompt?
+
+              ---The tool system prompt
+              ---@param args { tools: string[]} The tools available
+              ---@return string
+              prompt = function(_args)
+                return "Do not return results immediately. Wait until the tool call is complete before returning the results."
+              end,
+            },
+          },
+        },
       },
     },
     extensions = {
