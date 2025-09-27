@@ -129,11 +129,13 @@ M.on_attach = function(client, bufnr)
       opts("Lsp Document symbols")
     )
   end
-  if client:supports_method(lsp.protocol.Methods.textDocument_formatting) then
-    map({ "n", "v" }, "<leader>f", function()
-      lsp.buf.format({ async = true })
-    end, opts("Lsp Format document"))
-  end
+
+  -- -- Use confim.nvim for format
+  -- if client:supports_method(lsp.protocol.Methods.textDocument_formatting) then
+  --   map({ "n", "v" }, "<leader>f", function()
+  --     lsp.buf.format({ async = true })
+  --   end, opts("Lsp Format document"))
+  -- end
 
   -- -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
   -- if client:supports_method(lsp.protocol.Methods.textDocument_completion) then
