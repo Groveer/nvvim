@@ -19,6 +19,14 @@ return {
       desc = "Fzf Find current word",
     },
     {
+      "<leader>fs",
+      function()
+        require("fzf-lua").grep_visual()
+      end,
+      mode = "v",
+      desc = "Fzf Find visual selection",
+    },
+    {
       "<leader>fr",
       function()
         require("fzf-lua").resume()
