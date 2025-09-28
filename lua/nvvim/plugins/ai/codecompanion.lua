@@ -117,6 +117,11 @@ Submit information content based on the user's intention below:
         },
       },
       chat = {
+        keymaps = {
+          clear = {
+            modes = { n = "gX" },
+          },
+        },
         opts = {
           completion_provider = "blink", -- blink|cmp|coc|default
         },
