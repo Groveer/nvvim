@@ -155,11 +155,16 @@ return {
       },
     },
     keymap = {
+      builtin = {
+        ["<C-f>"] = "preview-page-down",
+        ["<C-b>"] = "preview-page-up",
+        ["<C-d>"] = "half-page-down",
+        ["<C-u>"] = "half-page-up",
+      },
       fzf = {
-        ["ctrl-f"] = "preview-page-down",
-        ["ctrl-b"] = "preview-page-up",
-        ["down"] = "next-history",
-        ["up"] = "prev-history",
+        -- Ctrl+Down/Up for change history
+        ["shift-down"] = "next-history",
+        ["shift-up"] = "prev-history",
       },
     },
   },
