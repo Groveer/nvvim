@@ -22,7 +22,7 @@ return {
   { import = "nvvim.plugins.render.navic" },
   { import = "nvvim.plugins.render.stcursorword" },
   { import = "nvvim.plugins.render.tiny-inline-diagnostic" },
-  { import = "nvvim.plugins.tools.auto-pairs" },
+  { import = "nvvim.plugins.tools.blink-pairs" },
   { import = "nvvim.plugins.tools.flash" },
   { import = "nvvim.plugins.tools.fzf-lua" },
   { import = "nvvim.plugins.tools.img-clip" },

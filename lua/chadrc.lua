@@ -159,6 +159,7 @@ M.base46 = {
     "navic",
     "diffview",
     "semantic_tokens",
+    "blink-pair",
   },
   hl_override = {
     NvDashButtons = { fg = "yellow" },
