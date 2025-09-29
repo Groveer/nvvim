@@ -160,6 +160,9 @@ M.base46 = {
     "diffview",
     "semantic_tokens",
     "blink-pair",
+    "flash",
+    "render-markdown",
+    "tiny-inline-diagnostic",
   },
   hl_override = {
     NvDashButtons = { fg = "yellow" },
