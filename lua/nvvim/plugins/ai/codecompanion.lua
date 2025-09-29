@@ -103,19 +103,6 @@ Submit information content based on the user's intention below:
       },
     },
     strategies = {
-      inline = {
-        keymaps = {
-          accept_change = {
-            modes = { n = "ga" },
-          },
-          reject_change = {
-            modes = { n = "gr" },
-          },
-          always_accept = {
-            modes = { n = "gy" },
-          },
-        },
-      },
       chat = {
         keymaps = {
           clear = {
