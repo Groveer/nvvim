@@ -85,28 +85,28 @@ opt.spelllang = { "en", "cjk" }
 opt.spelloptions = "camel"
 
 -- Define custom filetypes
-filetype.add({ extension = { ["json"] = "jsonc" } })
+filetype.add({ extension = { json = "jsonc" } })
 -- filetype for plantuml
 filetype.add({
   extension = {
-    ["puml"] = "plantuml",
-    ["pu"] = "plantuml",
-    ["plantuml"] = "plantuml",
-    ["uml"] = "plantuml",
-    ["iuml"] = "plantuml",
+    puml = "plantuml",
+    plantuml = "plantuml",
+    uml = "plantuml",
   },
 })
 -- filetype for qml
-filetype.add({ extension = { ["qml"] = "qmljs" } })
+filetype.add({ extension = { qml = "qmljs" } })
 -- filetype for image
 filetype.add({
   extension = {
-    png = 'image',
-    jpg = 'image',
-    jpeg = 'image',
-    gif = 'image',
-    webp = 'image',
-    avif = 'image',
+    png = "image",
+    jpg = "image",
+    jpeg = "image",
+    gif = "image",
+    webp = "image",
+    avif = "image",
+  },
+})
 
 filetype.add({
   extension = {
