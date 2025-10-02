@@ -107,5 +107,9 @@ filetype.add({
     gif = 'image',
     webp = 'image',
     avif = 'image',
+
+filetype.add({
+  extension = {
+    todo = "markdown",
   },
 })
