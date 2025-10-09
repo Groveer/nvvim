@@ -74,5 +74,13 @@ return {
   event = "BufWritePre",
   config = function(_, opts)
     require("conform").setup(opts)
+    -- https://github.com/stevearc/conform.nvim/blob/master/doc/formatter_options.md#prettier
+    require("conform").formatters.prettier = {
+      options = {
+        ext_parsers = {
+          todo = "markdown",
+        },
+      },
+    }
   end,
 }
