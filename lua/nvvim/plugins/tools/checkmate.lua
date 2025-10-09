@@ -2,6 +2,7 @@ return {
   "bngarren/checkmate.nvim",
   ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
   cmd = "Checkmate",
+  dependencies = { "ibhagwan/fzf-lua" }, -- ui select
   opts = {
     keys = {
       ["<leader>tt"] = {
@@ -64,7 +65,7 @@ return {
         desc = "Move cursor to previous metadata tag",
         modes = { "n" },
       },
-    }, -- disable default keymaps
+    },
     todo_states = {
       -- we don't need to set the `markdown` field for `unchecked` and `checked` as these can't be overriden
       ---@diagnostic disable-next-line: missing-fields
@@ -77,15 +78,72 @@ return {
         marker = "[x]",
         order = 2,
       },
+
+      -- Custom states
+      in_progress = {
+        marker = "◐",
+        markdown = ".", -- Saved as `- [.]`
+        type = "incomplete", -- Counts as "not done"
+        order = 50,
+      },
+      cancelled = {
+        marker = "✗",
+        markdown = "c", -- Saved as `- [c]`
+        type = "complete", -- Counts as "done"
+        order = 2,
+      },
+      on_hold = {
+        marker = "⏸",
+        markdown = "/", -- Saved as `- [/]`
+        type = "inactive", -- Ignored in counts
+        order = 100,
+      },
     },
     metadata = {
       pms = {
         style = { fg = "#4343f9" },
         get_value = function()
-          return "pms"
+          return "pms_number"
         end,
         key = "<leader>tP",
         sort_order = 5,
+        jump_to_on_insert = "value",
+        select_on_insert = true,
+      },
+      fixer = {
+        style = function(context)
+          local value = context.value:lower()
+          if value == "gy" then
+            return { fg = "#b20ffd" }
+          elseif value == "zdy" then
+            return { fg = "#ffb86c" }
+          elseif value == "sl" then
+            return { fg = "#8be9fd" }
+          elseif value == "pwh" then
+            return { fg = "#50fa7b" }
+          elseif value == "lh" then
+            return { fg = "#bd93f9" }
+          elseif value == "wyx" then
+            return { fg = "#f1fa8c" }
+          elseif value == "lhx" then
+            return { fg = "#ff79c6" }
+          elseif value == "xyb" then
+            return { fg = "#7062a4" }
+          elseif value == "lyn" then
+            return { fg = "#ff6e6e" }
+          else -- fallback
+            return { fg = "#b20ffd" }
+          end
+        end,
+        get_value = function()
+          return "gy"
+        end,
+        choices = function()
+          return { "gy", "zdy", "sl", "pwh", "lh", "wyx", "lhx", "xyb", "lyn" }
+        end,
+        key = "<leader>tf",
+        sort_order = 8,
+        jump_to_on_insert = "value",
       },
       -- Example: A @priority tag that has dynamic color based on the priority value
       priority = {
@@ -110,7 +168,6 @@ return {
         key = "<leader>tp",
         sort_order = 10,
         jump_to_on_insert = "value",
-        select_on_insert = true,
       },
       -- Example: A @started tag that uses a default date/time string when added
       started = {
