@@ -21,9 +21,6 @@ return {
       blink = { enabled = true },
     },
     restart_highlighter = true,
-    checkbox = {
-      enabled = false, -- render checkbox by checkmate plugin
-    },
   },
   ft = fts,
   config = function(_, opts)
