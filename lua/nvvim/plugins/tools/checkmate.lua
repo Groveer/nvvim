@@ -174,7 +174,7 @@ return {
         aliases = { "init" },
         style = { fg = "#9fd6d5" },
         get_value = function()
-          return tostring(os.date("%m/%d/%y %H:%M"))
+          return tostring(os.date("%y-%m-%d %H:%M"))
         end,
         key = "<leader>ts",
         sort_order = 20,
@@ -184,7 +184,7 @@ return {
         aliases = { "completed", "finished" },
         style = { fg = "#96de7a" },
         get_value = function()
-          return tostring(os.date("%m/%d/%y %H:%M"))
+          return tostring(os.date("%y-%m-%d %H:%M"))
         end,
         key = "<leader>td",
         on_add = function(todo_item)
