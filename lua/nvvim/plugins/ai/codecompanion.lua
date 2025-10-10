@@ -82,6 +82,9 @@ Log: [short description of the change use chinese language]
 
 The body line cannot exceed 80 characters.
 
+If the modification scope is small, you can omit both bodies line.
+If you do not omit the body, then do not omit any bodies.
+
 Submit information content based on the user's intention below:
 ]],
                 vim.fn.system("git --no-pager diff --no-ext-diff --staged")
