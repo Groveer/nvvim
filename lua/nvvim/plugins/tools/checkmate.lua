@@ -10,45 +10,15 @@ return {
         desc = "Toggle todo item",
         modes = { "n", "v" },
       },
-      ["<leader>tc"] = {
-        rhs = "<cmd>Checkmate check<CR>",
-        desc = "Set todo item as checked (done)",
-        modes = { "n", "v" },
-      },
       ["<leader>tu"] = {
         rhs = "<cmd>Checkmate uncheck<CR>",
         desc = "Set todo item as unchecked (not done)",
-        modes = { "n", "v" },
-      },
-      ["<leader>t="] = {
-        rhs = "<cmd>Checkmate cycle_next<CR>",
-        desc = "Cycle todo item(s) to the next state",
-        modes = { "n", "v" },
-      },
-      ["<leader>t-"] = {
-        rhs = "<cmd>Checkmate cycle_previous<CR>",
-        desc = "Cycle todo item(s) to the previous state",
         modes = { "n", "v" },
       },
       ["<leader>tn"] = {
         rhs = "<cmd>Checkmate create<CR>",
         desc = "Create todo item",
         modes = { "n", "v" },
-      },
-      ["<leader>tr"] = {
-        rhs = "<cmd>Checkmate remove<CR>",
-        desc = "Remove todo marker (convert to text)",
-        modes = { "n", "v" },
-      },
-      ["<leader>tR"] = {
-        rhs = "<cmd>Checkmate remove_all_metadata<CR>",
-        desc = "Remove all metadata from a todo item",
-        modes = { "n", "v" },
-      },
-      ["<leader>ta"] = {
-        rhs = "<cmd>Checkmate archive<CR>",
-        desc = "Archive checked/completed todo items (move to bottom section)",
-        modes = { "n" },
       },
       ["<leader>tv"] = {
         rhs = "<cmd>Checkmate metadata select_value<CR>",
@@ -65,6 +35,13 @@ return {
         desc = "Move cursor to previous metadata tag",
         modes = { "n" },
       },
+      ["<leader>th"] = {
+        rhs = function()
+          require("checkmate").toggle("on_hold")
+        end,
+        desc = "Set todo item as hold",
+        modes = { "n", "v" },
+      },
     },
     todo_states = {
       -- we don't need to set the `markdown` field for `unchecked` and `checked` as these can't be overriden
@@ -80,21 +57,9 @@ return {
       },
 
       -- Custom states
-      in_progress = {
-        marker = "◐",
-        markdown = ".", -- Saved as `- [.]`
-        type = "incomplete", -- Counts as "not done"
-        order = 50,
-      },
-      cancelled = {
-        marker = "✗",
-        markdown = "c", -- Saved as `- [c]`
-        type = "complete", -- Counts as "done"
-        order = 2,
-      },
       on_hold = {
-        marker = "⏸",
-        markdown = "/", -- Saved as `- [/]`
+        marker = "[-]",
+        markdown = "-", -- Saved as `- [/]`
         type = "inactive", -- Ignored in counts
         order = 100,
       },
