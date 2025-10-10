@@ -1,6 +1,7 @@
 return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
+  event = { "BufReadPost", "BufNewFile" },
   keys = {
     {
       "<leader>fo",
