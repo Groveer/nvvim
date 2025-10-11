@@ -2,7 +2,6 @@ return {
   "bngarren/checkmate.nvim",
   ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
   cmd = "Checkmate",
-  dependencies = { "ibhagwan/fzf-lua" }, -- ui select
   opts = {
     keys = {
       ["<leader>tt"] = {
