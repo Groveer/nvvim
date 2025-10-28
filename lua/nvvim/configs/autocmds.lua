@@ -28,3 +28,14 @@ autocmd("VimEnter", {
   end
 })
 
+-- auto clean characters when pasting from windows (WSL)
+autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("PasteFilter", { clear = true }),
+  pattern = "*",
+  callback = function()
+    if vim.o.paste then
+      vim.cmd([[%s/\r//g]])
+    end
+  end,
+})
+
