@@ -32,7 +32,32 @@ return {
             },
             schema = {
               model = {
-                default = "kimi-k2",
+                default = "MiniMax-M2",
+              },
+              think = {
+                default = true,
+              },
+              num_ctx = {
+                default = 1638400,
+              },
+            },
+          })
+        end,
+        minimax = function()
+          return require("codecompanion.adapters").extend("anthropic", {
+            url = "https://api.minimaxi.com/anthropic/v1/messages",
+            env = {
+              api_key = "MINIMAX_API_KEY",
+            },
+            schema = {
+              model = {
+                default = "MiniMax-M2",
+              },
+              think = {
+                default = true,
+              },
+              num_ctx = {
+                default = 1638400,
               },
             },
           })
@@ -116,8 +141,8 @@ Submit information content based on the user's intention below:
           completion_provider = "blink", -- blink|cmp|coc|default
         },
         adapter = {
-          name = "uniontech",
-          model = "kimi-k2",
+          name = "minimax",
+          model = "MiniMax-M2",
           -- model = "claude-3.7-sonnet",
           -- model = "claude-sonnet-4",
           -- model = "gemini-2.5-pro",
