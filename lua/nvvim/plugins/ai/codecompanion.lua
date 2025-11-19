@@ -103,6 +103,8 @@ Commit content should be written in the following format, And use markdown synta
 [Chinese body]
 
 Log: [short description of the change use chinese language]
+PMS: <BUG-number>(for bugfix) or <TASK-number>(for add feature) (Must include 'BUG-' or 'TASK-', If the user does not provide a number, remove this line.)
+Influence: Explain in Chinese the potential impact of this submission.
 ```
 
 The body line cannot exceed 80 characters.
