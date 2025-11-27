@@ -26,16 +26,15 @@ return {
         uniontech = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
-              url = "https://ai.uniontech.com",
+              url = "https://ai.uniontech.com/api",
               api_key = "UT_KEY",
-              chat_url = "/api/v1/chat/completions",
             },
             schema = {
               model = {
-                default = "MiniMax-M2",
+                default = "kimi-k2",
               },
               think = {
-                default = true,
+                default = false,
               },
               num_ctx = {
                 default = 1638400,
@@ -133,6 +132,12 @@ Submit information content based on the user's intention below:
       },
     },
     strategies = {
+      inline = {
+        adapter = {
+          name = "uniontech",
+          model = "kimi-k2",
+        },
+      },
       chat = {
         keymaps = {
           clear = {
@@ -143,8 +148,8 @@ Submit information content based on the user's intention below:
           completion_provider = "blink", -- blink|cmp|coc|default
         },
         adapter = {
-          name = "minimax",
-          model = "MiniMax-M2",
+          name = "uniontech",
+          model = "kimi-k2",
           -- model = "claude-3.7-sonnet",
           -- model = "claude-sonnet-4",
           -- model = "gemini-2.5-pro",
