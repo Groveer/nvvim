@@ -21,48 +21,6 @@ return {
     "CodeCompanionChat",
   },
   opts = {
-    adapters = {
-      http = {
-        uniontech = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://ai.uniontech.com/api",
-              api_key = "UT_KEY",
-            },
-            schema = {
-              model = {
-                default = "kimi-k2",
-              },
-              think = {
-                default = false,
-              },
-              num_ctx = {
-                default = 1638400,
-              },
-            },
-          })
-        end,
-        minimax = function()
-          return require("codecompanion.adapters").extend("anthropic", {
-            url = "https://api.minimaxi.com/anthropic/v1/messages",
-            env = {
-              api_key = "MINIMAX_API_KEY",
-            },
-            schema = {
-              model = {
-                default = "MiniMax-M2",
-              },
-              think = {
-                default = true,
-              },
-              num_ctx = {
-                default = 1638400,
-              },
-            },
-          })
-        end,
-      },
-    },
     opts = {
       language = "Chinese",
       send_code = true,
@@ -134,8 +92,8 @@ Submit information content based on the user's intention below:
     strategies = {
       inline = {
         adapter = {
-          name = "uniontech",
-          model = "kimi-k2",
+          name = "copilot",
+          model = "gpt-4.1",
         },
       },
       chat = {
@@ -148,8 +106,8 @@ Submit information content based on the user's intention below:
           completion_provider = "blink", -- blink|cmp|coc|default
         },
         adapter = {
-          name = "uniontech",
-          model = "kimi-k2",
+          name = "copilot",
+          model = "gpt-4.1",
           -- model = "claude-3.7-sonnet",
           -- model = "claude-sonnet-4",
           -- model = "gemini-2.5-pro",
