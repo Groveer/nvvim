@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field, need-check-nil
 local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
 local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
@@ -157,10 +158,11 @@ M.on_attach = function(client, bufnr)
   local function restart_lsp_clients()
     local clients = lsp.get_clients({ bufnr = bufnr })
     for _, _client in ipairs(clients) do
-      lsp.stop_client(_client.id)
+      client.stop()
     end
 
     vim.defer_fn(function()
+      vim.cmd('write')
       vim.cmd("edit") -- Force buffer reload
     end, 100)
   end
@@ -172,11 +174,13 @@ M.on_attach = function(client, bufnr)
   )
 end
 
-vim.lsp.config("*", {
+---@type vim.lsp.Config
+local lsp_config = {
   capabilities = M.capabilities_config(),
   on_attach = M.on_attach,
   root_markers = { ".git" },
-})
+}
+vim.lsp.config("*", lsp_config)
 
 vim.lsp.enable(M.require_servers)
 

@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 local M = {}
 
 function M:load_variables()

@@ -1,3 +1,4 @@
+---@diagnostic disable: need-check-nil, undefined-field, assign-type-mismatch
 -- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
 
@@ -23,7 +24,8 @@ end
 local function statusline_lsp_config()
   local lsp_index = 1
   local lsp_names = {}
-  local timer = nil
+  local timer = vim.uv.new_timer()
+  local timer_is_running = false
   local last_buf = 0
 
   local function update_lsp_names()
@@ -52,10 +54,9 @@ local function statusline_lsp_config()
   end
 
   local function start_timer()
-    if timer then
+    if timer_is_running then
       return
     end
-    timer = vim.uv.new_timer()
     if not timer then
       vim.notify("Failed to create timer", vim.log.levels.ERROR)
       return
@@ -68,8 +69,10 @@ local function statusline_lsp_config()
         if #lsp_names > 0 then
           lsp_index = lsp_index % #lsp_names + 1
         end
+        timer_is_running = true
       end)
     )
+    timer_is_running = false
   end
 
   return function()

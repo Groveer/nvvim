@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field, deprecated
 vim.uv = vim.uv or vim.loop
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
