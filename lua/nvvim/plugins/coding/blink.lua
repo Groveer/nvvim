@@ -3,7 +3,7 @@ return {
   -- optional: provides snippets for the snippet source
   dependencies = { "L3MON4D3/LuaSnip" },
 
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
 
   -- use a release tag to download pre-built binaries
   version = "*",
@@ -36,7 +36,6 @@ return {
       ["<S-Tab>"] = { "select_prev", "fallback" },
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
     },
 
     appearance = {
@@ -57,18 +56,29 @@ return {
     },
 
     signature = {
-      enabled = true,
+      enabled = false,
       window = { border = "rounded" },
     },
 
     cmdline = {
-      enabled = false,
+      enabled = true,
       keymap = {
-        preset = "inherit",
+        ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+        ["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
+
+        ["<C-space>"] = { "show", "fallback" },
+
+        ["<C-f>"] = { "select_next", "fallback" },
+        ["<C-b>"] = { "select_prev", "fallback" },
+        ["<Right>"] = { "select_next", "fallback" },
+        ["<Left>"] = { "select_prev", "fallback" },
+
+        ["<C-y>"] = { "select_and_accept", "fallback" },
+        ["<C-e>"] = { "cancel", "fallback" },
       },
       completion = {
         menu = {
-          auto_show = true,
+          auto_show = false,
         },
         ghost_text = {
           enabled = true,
