@@ -1,5 +1,6 @@
 return {
   "olimorris/codecompanion.nvim",
+  tag = "v17.33.0",
   keys = {
     {
       "<leader>aa",
