@@ -63,6 +63,12 @@ opt.undofile = true
 -- Interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
 
+-- Disable swap file
+opt.swapfile = false
+
+-- Disable backup file
+opt.backup = false
+
 -- Go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append("<>[]hl")
