@@ -30,22 +30,20 @@ return {
       "yaml",
       "diff",
     },
-
-    highlight = {
-      enable = true,
-      use_languagetree = true,
-    },
-
-    indent = { enable = true },
-  },
-  dependencies = {
-    "hiphish/rainbow-delimiters.nvim",
-    config = function(_, opts)
-      require("rainbow-delimiters.setup").setup(opts)
-    end,
   },
 
   config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
+    -- use treesitter for syntax highlighting
+    -- vim.cmd.syntax("off")
+    -- vim.api.nvim_create_autocmd("BufReadPost", {
+    --     pattern = opts.ensure_installed,
+    --     callback = function()
+    --         -- can start a specific treesitter on a specific buffer also
+    --         -- vim.treesitter.start(0, "c")
+    --         vim.treesitter.start()
+    --     end,
+    --     once = true,
+    -- })
+    require('nvim-treesitter').install(opts.ensure_installed)
   end,
 }
