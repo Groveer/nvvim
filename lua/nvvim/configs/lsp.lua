@@ -162,7 +162,7 @@ M.on_attach = function(client, bufnr)
     end
 
     vim.defer_fn(function()
-      vim.cmd('write')
+      vim.cmd("write")
       vim.cmd("edit") -- Force buffer reload
     end, 100)
   end
