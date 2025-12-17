@@ -29,7 +29,7 @@ return {
   { import = "nvvim.plugins.tools.checkmate" },
   { import = "nvvim.plugins.tools.flash" },
   { import = "nvvim.plugins.tools.fzf-lua" },
-  { import = "nvvim.plugins.tools.img-clip" },
+  -- { import = "nvvim.plugins.tools.img-clip" },
   { import = "nvvim.plugins.tools.spectre" },
   { import = "nvvim.plugins.tools.suda" },
   { import = "nvvim.plugins.tools.which-key" },

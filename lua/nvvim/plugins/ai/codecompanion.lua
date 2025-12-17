@@ -105,21 +105,6 @@ return {
             opts = { provider = "fzf_lua" },
           },
         },
-        tools = {
-          opts = {
-            system_prompt = {
-              enabled = true, -- Enable the tools system prompt?
-              replace_main_system_prompt = false, -- Replace the main system prompt with the tools system prompt?
-
-              ---The tool system prompt
-              ---@param args { tools: string[]} The tools available
-              ---@return string
-              prompt = function(_args)
-                return "Do not return results immediately. Wait until the tool call is complete before returning the results."
-              end,
-            },
-          },
-        },
       },
     },
     extensions = {
@@ -131,17 +116,29 @@ return {
           show_result_in_chat = true,
         },
       },
+      history = {
+        enabled = true, -- defaults to true
+        dir_to_save = vim.fn.stdpath("data") .. "/history/codecompanion-history",
+        opts = {
+          picker = "fzf_lua", --- ("telescope", "snacks", "fzf-lua", or "default")
+        },
+      },
     },
   },
   dependencies = {
     "ravitemer/mcphub.nvim",
     "nvim-lua/plenary.nvim",
-    "HakonHarnes/img-clip.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "ravitemer/codecompanion-history.nvim", -- history extension
   },
 
   config = function(_, opts)
     vim.g.codecompanion_auto_tool_mode = true
+    local history_dir = vim.fn.stdpath("data") .. "/history"
+    if vim.fn.isdirectory(history_dir) == 0 then
+      vim.fn.mkdir(history_dir, "p")
+    end
+
     require("codecompanion").setup(opts)
   end,
 }

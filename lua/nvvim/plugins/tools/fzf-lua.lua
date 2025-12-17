@@ -162,11 +162,6 @@ return {
         ["<C-d>"] = "half-page-down",
         ["<C-u>"] = "half-page-up",
       },
-      fzf = {
-        -- Ctrl+Down/Up for change history
-        ["shift-down"] = "next-history",
-        ["shift-up"] = "prev-history",
-      },
     },
   },
   config = function(_, opts)
