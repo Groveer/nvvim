@@ -110,7 +110,7 @@ return {
     grep = {
       -- 专门针对 live_grep 的设置
       fzf_opts = {
-        ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-history",
+        ["--history"] = vim.fn.stdpath("data") .. "/history/fzf-lua-history",
       },
       live_grep = {
         rg_opts = "--hidden --follow --smart-case", -- ripgrep 基础选项
@@ -140,7 +140,7 @@ return {
 
     files = {
       fzf_opts = {
-        ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-history",
+        ["--history"] = vim.fn.stdpath("data") .. "/history/fzf-lua-history",
       },
       -- 文件搜索的忽略设置
       file_ignore_patterns = {
@@ -159,12 +159,14 @@ return {
       builtin = {
         ["<C-f>"] = "preview-page-down",
         ["<C-b>"] = "preview-page-up",
-        ["<C-d>"] = "half-page-down",
-        ["<C-u>"] = "half-page-up",
       },
     },
   },
   config = function(_, opts)
+    local history_dir = vim.fn.stdpath("data") .. "/history"
+    if vim.fn.isdirectory(history_dir) == 0 then
+      vim.fn.mkdir(history_dir, "p")
+    end
     require("fzf-lua").setup(opts)
     vim.cmd("FzfLua register_ui_select")
   end,
