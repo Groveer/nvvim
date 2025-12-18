@@ -107,11 +107,11 @@ return {
       rg_glob = true, -- 启用 ripgrep 的 glob 模式
     },
 
+    fzf_opts = {
+      ["--history"] = vim.fn.stdpath("data") .. "/history/fzf-lua-history",
+    },
     grep = {
       -- 专门针对 live_grep 的设置
-      fzf_opts = {
-        ["--history"] = vim.fn.stdpath("data") .. "/history/fzf-lua-history",
-      },
       live_grep = {
         rg_opts = "--hidden --follow --smart-case", -- ripgrep 基础选项
         rg_extra_args = function()
@@ -139,9 +139,6 @@ return {
     },
 
     files = {
-      fzf_opts = {
-        ["--history"] = vim.fn.stdpath("data") .. "/history/fzf-lua-history",
-      },
       -- 文件搜索的忽略设置
       file_ignore_patterns = {
         "^node_modules/",
