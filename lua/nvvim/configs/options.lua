@@ -2,6 +2,9 @@ local opt = vim.opt
 local g = vim.g
 local filetype = vim.filetype
 
+--- Disable deprecation warnings
+vim.deprecate = function() end
+
 -------------------------------------- options ------------------------------------------
 -- Set status line to always be visible and only the last window
 opt.laststatus = 3
