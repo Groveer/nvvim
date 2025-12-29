@@ -25,7 +25,6 @@ return {
       language = "Chinese",
       send_code = true,
       completion_provider = "blink",
-      require_approval_before = false,
     },
     prompt_library = {
       markdown = {
@@ -103,6 +102,16 @@ return {
           },
           ["symbols"] = {
             opts = { provider = "fzf_lua" },
+          },
+        },
+        tools = {
+          opts = {
+            auto_submit_errors = true, -- Send any errors to the LLM automatically?
+            auto_submit_success = true, -- Send any successful output to the LLM automatically?
+            default_tools = {
+              "files",
+              "cmd_runner",
+            },
           },
         },
       },
