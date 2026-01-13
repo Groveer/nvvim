@@ -18,6 +18,7 @@ M.require_servers = {
   "neocmake",
   "taplo",
   "ts_ls",
+  "qmlls",
   -- "rust_analyzer", -- rust lsp handled by rustaceanvim plugin
   "mesonlsp",
 }

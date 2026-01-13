@@ -35,7 +35,7 @@ return {
       qmlformat = {
         -- Change where to find the command
         command = "qmlformat",
-        args = { "$FILENAME" },
+        args = { "-i", "$FILENAME" },
       },
     },
     -- only format changed lines on save
