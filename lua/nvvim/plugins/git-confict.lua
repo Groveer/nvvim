@@ -1,6 +1,6 @@
 return {
   "akinsho/git-conflict.nvim",
   event = "BufReadPost",
-  version = "*",
+  -- version = "*",
   config = true,
 }

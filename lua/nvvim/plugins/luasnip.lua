@@ -6,7 +6,7 @@ return {
     "L3MON4D3/LuaSnip",
     dependencies = "rafamadriz/friendly-snippets",
     opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-    version = "v2.*",
+    -- version = "v2.*",
     build = build_cmd,
     config = function(_, opts)
       require("luasnip").config.set_config(opts)

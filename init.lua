@@ -1,27 +1,17 @@
 ---@diagnostic disable: undefined-field, deprecated
 vim.uv = vim.uv or vim.loop
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-  vim.api.nvim_echo({ { "Initializing, please wait..." } }, true, {})
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
+vim.pack.add({ "https://github.com/zuqini/zpack.nvim" })
 
 require("nvvim.configs.options")
 require("nvvim.configs.autocmds")
 require("nvvim.configs.keymap")
 require("nvvim.configs.lsp")
 
-require("lazy").setup(require("nvvim.configs").lazy_config)
-
+require("zpack").setup({
+  { import = "nvvim.plugins" },
+  defaults = {
+    confirm = false,
+  },
+  lazy = true,
+})

@@ -16,8 +16,8 @@ local keymap = {
     { "<C-s>",        "<CMD>w<CR>",               "n",           { desc = "General Save file" } },
     { "<C-c>",        "<CMD>%y+<CR>",             "n",           { desc = "General Copy whole file" } },
 
-    { "<leader>n",    "<CMD>set nu!<CR>",         "n",           { desc = "Toggle line number" } },
-    { "<leader>rn",   "<CMD>set rnu!<CR>",        "n",           { desc = "Toggle relative number" } },
+    -- { "<leader>n",    "<CMD>set nu!<CR>",         "n",           { desc = "Toggle line number" } },
+    -- { "<leader>rn",   "<CMD>set rnu!<CR>",        "n",           { desc = "Toggle relative number" } },
 
     { ";",            ":",                        { "n", "v" },  { desc = "Nvim CMD enter command mode" } },
 

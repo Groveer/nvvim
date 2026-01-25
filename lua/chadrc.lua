@@ -128,28 +128,7 @@ M.ui = {
 }
 
 M.nvdash = {
-  load_on_startup = true,
-  buttons = {
-    { txt = "  Recent Files", keys = "Spc f o", cmd = "FzfLua oldfiles" },
-    { txt = "  Find File", keys = "Spc f f", cmd = "FzfLua files" },
-    { txt = "󰈭  Find Word", keys = "Spc f w", cmd = "FzfLua live_grep" },
-    { txt = "󱥚  Themes", keys = "Spc t h", cmd = ":lua require('nvchad.themes').open()" },
-    { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
-
-    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
-
-    {
-      txt = function()
-        local stats = require("lazy").stats()
-        local ms = math.floor(stats.startuptime) .. " ms"
-        return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
-      end,
-      hl = "NvDashLazy",
-      no_gap = true,
-    },
-
-    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
-  },
+  load_on_startup = false,
 }
 
 M.base46 = {
@@ -160,7 +139,6 @@ M.base46 = {
     "notify",
     "todo",
     "navic",
-    "diffview",
     "semantic_tokens",
     "blink-pair",
     "flash",
