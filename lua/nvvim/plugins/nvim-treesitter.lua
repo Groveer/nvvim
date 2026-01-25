@@ -2,7 +2,6 @@ return {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost", "BufNewFile" },
   cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-  build = ":TSUpdate",
   opts = {
     -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
     ensure_installed = {
@@ -43,6 +42,6 @@ return {
     --     end,
     --     once = true,
     -- })
-    require('nvim-treesitter').install(opts.ensure_installed)
+    require("nvim-treesitter").install(opts.ensure_installed)
   end,
 }
