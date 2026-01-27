@@ -1,6 +1,7 @@
 return {
   cmd = {
     "clangd",
+    "--function-arg-placeholders",
     "-j=12",
     "--enable-config",
     "--background-index",
