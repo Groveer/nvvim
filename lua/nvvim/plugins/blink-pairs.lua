@@ -3,16 +3,16 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   version = vim.version.range("*"), -- (recommended) only required with prebuilt binaries
   -- download prebuilt binaries from github releases
-  -- dependencies = "saghen/blink.download",
+  dependencies = "saghen/blink.download",
   -- OR build from source, requires nightly:
   -- https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  build = function()
-    vim.fn.system({
-      "cargo",
-      "build",
-      "--release",
-    })
-  end,
+  -- build = function()
+  --   vim.fn.system({
+  --     "cargo",
+  --     "build",
+  --     "--release",
+  --   })
+  -- end,
   -- If you use nix, you can build from source using latest nightly rust with:
   -- build = 'nix run .#build-plugin',
 
