@@ -189,15 +189,56 @@ M.on_attach = function(client, bufnr)
   )
 end
 
----@type vim.lsp.Config
-local lsp_config = {
-  capabilities = M.capabilities_config(),
-  on_attach = M.on_attach,
-  root_markers = { ".git" },
-}
-vim.lsp.config("*", lsp_config)
+-- Hub logic for LSP configuration
+local function setup_servers()
+  local global_on_attach = M.on_attach
+  local global_capabilities = M.capabilities_config()
+  local has_lspconfig, lspconfig_configs = pcall(require, "lspconfig.configs")
 
-vim.lsp.enable(M.require_servers)
+  for _, server_name in ipairs(M.require_servers) do
+    local config = {
+      capabilities = global_capabilities,
+      on_attach = global_on_attach,
+    }
+
+    -- 1. Merge nvim-lspconfig defaults if available
+    if has_lspconfig and lspconfig_configs[server_name] then
+      local default_config = lspconfig_configs[server_name].default_config
+      config = vim.tbl_deep_extend("force", default_config, config)
+    end
+
+    -- 2. Merge local customization from lua/nvvim/lsp/
+    local has_local, local_custom = pcall(require, "nvvim.lsp." .. server_name)
+    if has_local then
+      -- If local custom has on_attach, we need to wrap it to avoid overwriting global one
+      local local_on_attach = local_custom.on_attach
+      local local_capabilities = local_custom.capabilities
+
+      config = vim.tbl_deep_extend("force", config, local_custom)
+
+      -- Re-wrap on_attach to ensure both run
+      if local_on_attach then
+        config.on_attach = function(client, bufnr)
+          global_on_attach(client, bufnr)
+          local_on_attach(client, bufnr)
+        end
+      end
+
+      -- Merge capabilities
+      if local_capabilities then
+        config.capabilities = vim.tbl_deep_extend("force", global_capabilities, local_capabilities)
+      end
+    end
+
+    vim.lsp.config(server_name, config)
+  end
+
+  -- Enable all required servers
+  vim.lsp.enable(M.require_servers)
+end
+
+setup_servers()
+
 
 -- Disable default lsp keymap
 vim.keymap.set("n", "gr", "gr", { noremap = true, nowait = true })

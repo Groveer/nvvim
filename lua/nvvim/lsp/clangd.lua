@@ -21,7 +21,6 @@ return {
   on_attach = function(client, bufnr)
     local lsp = vim.lsp
     local map = vim.keymap.set
-    require("nvvim.configs.lsp").on_attach(client, bufnr)
     local function switch_source_header()
       local method_name = "textDocument/switchSourceHeader"
       local params = lsp.util.make_text_document_params(bufnr)
