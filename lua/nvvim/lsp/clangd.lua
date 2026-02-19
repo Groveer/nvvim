@@ -1,8 +1,9 @@
+local nproc = math.max(1, #vim.uv.cpu_info() - 1)
 return {
   cmd = {
     "clangd",
     "--function-arg-placeholders",
-    "-j=12",
+    "-j=" .. nproc,
     "--enable-config",
     "--background-index",
     "--pch-storage=memory",
