@@ -32,7 +32,7 @@ PMS: <BUG-number>(for bugfix) or <TASK-number>(for add feature) (Must include 'B
 Influence: Explain in Chinese the potential impact of this submission.
 ```
 
-The body line cannot exceed 80 characters.
+All line cannot exceed 80 characters.
 
 If the modification scope is small, you can omit both bodies line.
 If you do not omit the body, then do not omit any bodies.

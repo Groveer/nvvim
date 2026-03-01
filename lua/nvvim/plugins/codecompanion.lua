@@ -41,6 +41,7 @@ return {
       http = {
         groveer = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
+            formatted_name = "Groveer",
             env = {
               url = "https://axonhub.groveer.com",
               api_key = "AXONHUB_API_KEY",
@@ -71,8 +72,11 @@ return {
             modes = { n = "gX" },
           },
         },
-        opts = {
-          completion_provider = "blink", -- blink|cmp|coc|default
+        roles = { -- make rendered roles nicer
+          llm = function(adapter)
+            return (" %s"):format(adapter.formatted_name)
+          end,
+          user = " User",
         },
         tools = {
           opts = {
