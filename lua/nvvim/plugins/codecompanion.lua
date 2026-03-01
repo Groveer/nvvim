@@ -94,12 +94,14 @@ return {
         enabled = true, -- defaults to true
         dir_to_save = vim.fn.stdpath("data") .. "/history/codecompanion-history",
       },
+      spinner = {},
     },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/codecompanion-history.nvim", -- history extension
+    "franco-ruggeri/codecompanion-spinner.nvim",
   },
 
   config = function(_, opts)
