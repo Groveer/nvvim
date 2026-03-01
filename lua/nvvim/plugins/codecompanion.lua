@@ -113,14 +113,6 @@ return {
       },
     },
     extensions = {
-      mcphub = {
-        callback = "mcphub.extensions.codecompanion",
-        opts = {
-          make_vars = true,
-          make_slash_commands = true,
-          show_result_in_chat = true,
-        },
-      },
       history = {
         enabled = true, -- defaults to true
         dir_to_save = vim.fn.stdpath("data") .. "/history/codecompanion-history",
@@ -131,7 +123,6 @@ return {
     },
   },
   dependencies = {
-    "ravitemer/mcphub.nvim",
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/codecompanion-history.nvim", -- history extension
