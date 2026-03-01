@@ -1,7 +1,9 @@
+local nproc = math.max(1, #vim.uv.cpu_info() - 1)
 return {
   cmd = {
     "clangd",
-    "-j=12",
+    "--function-arg-placeholders",
+    "-j=" .. nproc,
     "--enable-config",
     "--background-index",
     "--pch-storage=memory",
@@ -20,7 +22,6 @@ return {
   on_attach = function(client, bufnr)
     local lsp = vim.lsp
     local map = vim.keymap.set
-    require("nvvim.configs.lsp").on_attach(client, bufnr)
     local function switch_source_header()
       local method_name = "textDocument/switchSourceHeader"
       local params = lsp.util.make_text_document_params(bufnr)

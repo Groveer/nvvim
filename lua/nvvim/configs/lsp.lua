@@ -175,10 +175,18 @@ M.on_attach = function(client, bufnr)
   )
 end
 
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    M.on_attach(client, bufnr)
+  end,
+})
+
 ---@type vim.lsp.Config
 local lsp_config = {
   capabilities = M.capabilities_config(),
-  on_attach = M.on_attach,
   root_markers = { ".git" },
 }
 vim.lsp.config("*", lsp_config)
