@@ -23,7 +23,7 @@ return {
 
       -- bash stuff
       "bash-language-server",
-      "shfmt",
+      "beautysh",
 
       -- json stuff
       "json-lsp",

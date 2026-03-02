@@ -24,7 +24,8 @@ return {
 
       markdown = { "prettier" },
 
-      sh = { "shfmt" },
+      sh = { "beautysh" },
+      zsh = { "beautysh" },
 
       yaml = { "yamlfmt" },
       qmljs = { "qmlformat" },
