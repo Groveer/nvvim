@@ -44,7 +44,7 @@ return {
             formatted_name = "Groveer",
             env = {
               url = "https://axonhub.groveer.com",
-              api_key = "AXONHUB_API_KEY",
+              api_key = "GROVEER_API_KEY",
             },
             schema = {
               model = {
