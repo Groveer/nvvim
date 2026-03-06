@@ -43,18 +43,18 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             formatted_name = "Groveer",
             env = {
-              url = "https://axonhub.groveer.com",
-              api_key = "GROVEER_API_KEY",
+              url = "https://cpa.groveer.com",
+              api_key = "CPA_API_KEY",
             },
             schema = {
               model = {
-                default = "minimaxai/minimax-m2.5",
+                default = "glm-5",
               },
               think = {
                 default = true,
               },
               num_ctx = {
-                default = 200 * 1024,
+                default = 256 * 1024,
               },
             },
           })
