@@ -48,7 +48,7 @@ return {
             },
             schema = {
               model = {
-                default = "glm-5",
+                default = "deepseek-v3.2",
               },
               think = {
                 default = true,

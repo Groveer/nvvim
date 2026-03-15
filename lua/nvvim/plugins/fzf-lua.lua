@@ -94,63 +94,22 @@ return {
   },
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
-    -- 全局设置适用于所有 fzf-lua 命令
-    global = {
-      file_ignore_patterns = {
-        "node_modules/.*", -- 忽略 node_modules 目录
-        "%.git/.*", -- 忽略 .git 目录
-        "build/.*", -- 忽略 build 目录
-        "dist/.*", -- 忽略 dist 目录
-        "%.idea/.*", -- 忽略 .idea 目录
-        "%.vscode/.*", -- 忽略 .vscode 目录
-      },
-      rg_glob = true, -- 启用 ripgrep 的 glob 模式
+    winopts = {
+      height = 0.95,
+      width = 0.95,
     },
 
     fzf_opts = {
       ["--history"] = vim.fn.stdpath("data") .. "/history/fzf-lua-history",
     },
     grep = {
-      -- 专门针对 live_grep 的设置
-      live_grep = {
-        rg_opts = "--hidden --follow --smart-case", -- ripgrep 基础选项
-        rg_extra_args = function()
-          -- 动态构建排除目录参数
-          local excludes = {
-            "--glob=!**/node_modules/**",
-            "--glob=!**/.git/**",
-            "--glob=!**/build/**",
-            "--glob=!**/dist/**",
-            "--glob=!**/.idea/**",
-            "--glob=!**/vendor/**",
-            "--glob=!**/__pycache__/**",
-          }
-          return excludes
-        end,
-      },
-
-      -- 普通 grep 设置
-      grep = {
-        rg_extra_args = {
-          "--glob=!**/node_modules/**",
-          "--glob=!**/.git/**",
-        },
-      },
+      hidden = true,
     },
 
     files = {
-      -- 文件搜索的忽略设置
-      file_ignore_patterns = {
-        "^node_modules/",
-        "^%.git/",
-        "^build/",
-        "^dist/",
-        "%.o$",
-        "%.a$",
-        "%.so$",
-        "%.dll$",
-        "%.exe$",
-      },
+      find_opts = [[-type f \! -path '*/.git/*' \! -path '*/.idea/*' \! -path '*/node_modules/*' \! -path '*/build/*' \! -path '*/dist/*' \! -path '*/__pycache__/*']],
+      rg_opts = [[--color=never --hidden --files -g "!.git" -g "!.idea" -g "!node_modules" -g "!build" -g "!dist" -g "!__pycache__"]],
+      fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude .idea --exclude node_modules --exclude build --exclude dist --exclude __pycache__]],
     },
     keymap = {
       builtin = {
