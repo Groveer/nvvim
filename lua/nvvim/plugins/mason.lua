@@ -44,6 +44,7 @@ return {
 
       "qmlls", --- need install unixodbc package, eg: apt install unixodbc, pacman -S unixodbc
 
+      "yamlfmt",
       "taplo",
     },
 

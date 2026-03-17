@@ -28,6 +28,7 @@ return {
       "vim",
       "yaml",
       "diff",
+      "regex",
     },
   },
 
