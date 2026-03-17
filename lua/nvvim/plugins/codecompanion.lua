@@ -36,6 +36,11 @@ return {
       chat = {
         start_in_insert_mode = true,
       },
+      action_palette = {
+        opts = {
+          show_preset_prompts = false,
+        },
+      },
     },
     adapters = {
       http = {
