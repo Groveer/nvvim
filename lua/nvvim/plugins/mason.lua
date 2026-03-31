@@ -10,6 +10,9 @@ return {
       "emmylua_ls",
       "stylua",
 
+      -- treesitter stuff
+      "tree-sitter-cli",
+
       -- web dev stuff
       "css-lsp",
       "html-lsp",
