@@ -98,7 +98,9 @@ M.on_attach = function(client, bufnr)
 
   if client:supports_method(lsp.protocol.Methods.textDocument_hover) then
     map("n", "K", function()
-      lsp.buf.hover()
+      lsp.buf.hover({
+        border = "rounded",
+      })
     end, opts("Lsp Hover information"))
   end
 
