@@ -46,6 +46,9 @@ return {
 
       "yamlfmt",
       "taplo",
+
+      -- zig stuff
+      "zls",
     },
 
     ui = {

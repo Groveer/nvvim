@@ -21,6 +21,7 @@ M.require_servers = {
   "qmlls",
   -- "rust_analyzer", -- rust lsp handled by rustaceanvim plugin
   "mesonlsp",
+  "zls",
 }
 
 local has_nvui, nvui = pcall(require, "nvchad.lsp")
@@ -177,7 +178,7 @@ M.on_attach = function(client, bufnr)
   )
 end
 
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
