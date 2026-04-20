@@ -25,3 +25,11 @@ require("nvvim.configs.lsp")
 
 require("lazy").setup(require("nvvim.configs").lazy_config)
 
+require("vim._core.ui2").enable({
+  enabled = true,
+  msg = {
+    target = "msg",
+    timeout = 4000,
+  },
+})
+
