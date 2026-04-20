@@ -12,7 +12,30 @@ function M:load_variables()
   self.home = home
 end
 
+function M:load_python()
+  -- Setup Python provider with dedicated venv
+  local venv_dir = vim.fn.stdpath("config") .. "/.venv"
+  local venv_python = venv_dir .. "/bin/python"
+
+  if not vim.uv.fs_stat(venv_dir) then
+    vim.notify("Creating Python venv for Neovim...", vim.log.levels.INFO)
+    vim.fn.system({ "python", "-m", "venv", venv_dir })
+    if vim.v.shell_error ~= 0 then
+      vim.notify("Failed to create venv: " .. venv_dir, vim.log.levels.ERROR)
+    else
+      vim.notify("Installing pynvim...", vim.log.levels.INFO)
+      vim.fn.system({ venv_python, "-m", "pip", "install", "pynvim" })
+      if vim.v.shell_error ~= 0 then
+        vim.notify("Failed to install pynvim", vim.log.levels.ERROR)
+      end
+    end
+  end
+
+  vim.g.python3_host_prog = venv_python
+end
+
 M:load_variables()
+M:load_python()
 
 M.lazy_config = {
   spec = {
