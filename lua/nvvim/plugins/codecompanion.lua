@@ -48,12 +48,12 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             formatted_name = "Groveer",
             env = {
-              url = "https://cpa.groveer.com",
-              api_key = "CPA_API_KEY",
+              url = "https://api.groveer.com",
+              api_key = "AI_API_KEY",
             },
             schema = {
               model = {
-                default = "deepseek-v3.2",
+                default = "deepseek-v4-flash",
               },
               think = {
                 default = true,
