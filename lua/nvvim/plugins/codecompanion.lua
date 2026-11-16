@@ -53,17 +53,29 @@ return {
             },
             schema = {
               model = {
-                default = "deepseek-v4-flash",
+                default = "group/pro",
               },
               think = {
                 default = true,
               },
               num_ctx = {
-                default = 256 * 1024,
+                default = 1000 * 1000,
               },
             },
           })
         end,
+        extend = {
+          tavily = {
+            env = {
+              api_key = "TAVILY_API_KEY",
+            },
+          },
+          jina = {
+            env = {
+              api_key = "JINA_API_KEY",
+            },
+          },
+        },
       },
     },
     interactions = {
@@ -83,7 +95,24 @@ return {
           end,
           user = " User",
         },
+        slash_commands = {
+          ["fetch"] = {
+            opts = {
+              adapter = "jina", -- Can be "jina" or "markitdown"
+            },
+          },
+        },
         tools = {
+          ["web_search"] = {
+            opts = {
+              adapter = "tavily",
+            },
+          },
+          ["fetch_webpage"] = {
+            opts = {
+              adapter = "jina", -- Can be "jina" or "markitdown"
+            },
+          },
           opts = {
             auto_submit_errors = true, -- Send any errors to the LLM automatically?
             auto_submit_success = true, -- Send any successful output to the LLM automatically?
