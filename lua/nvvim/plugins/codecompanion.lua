@@ -25,6 +25,11 @@ return {
       language = "Chinese",
       send_code = true,
     },
+    display = {
+      chat = {
+        start_in_insert_mode = true,
+      },
+    },
     prompt_library = {
       markdown = {
         dirs = {
@@ -32,13 +37,31 @@ return {
         },
       },
     },
-    display = {
-      chat = {
-        start_in_insert_mode = true,
+    skills = {
+      dirs = {
+        vim.fn.stdpath("config") .. "/skills",
       },
-      action_palette = {
-        opts = {
-          show_preset_prompts = false,
+      ["qt"] = {
+        description = "How I want code to be written in Qt",
+        skills = {
+          "qt-canvas2d",
+          "qt-cmake-project",
+          "qt-cpp-bug-fixer",
+          "qt-cpp-docs",
+          "qt-cpp-review",
+          "qt-qml",
+          "qt-qml-docs",
+          "qt-qml-review",
+          "qt-qml-profiler",
+          "qt-qml-review",
+          "qt-qml-test",
+          "qt-qml-test-run",
+          "qt-ui-design",
+        },
+      },
+      chat = {
+        autoload = {
+          "qt",
         },
       },
     },
@@ -103,6 +126,20 @@ return {
           },
         },
         tools = {
+          ["run_command"] = {
+            opts = {
+              judge = true,
+              safe_commands = {
+                "git status",
+                "git diff",
+                "git log",
+                "ls",
+                "pwd",
+                "cat",
+                "rg",
+              },
+            },
+          },
           ["web_search"] = {
             opts = {
               adapter = "tavily",
@@ -114,6 +151,7 @@ return {
             },
           },
           opts = {
+            approval_mode = "auto", -- Can be "ask", "auto" or "yolo"
             auto_submit_errors = true, -- Send any errors to the LLM automatically?
             auto_submit_success = true, -- Send any successful output to the LLM automatically?
           },
@@ -145,5 +183,17 @@ return {
     end
 
     require("codecompanion").setup(opts)
+
+    -- Let our own `prompts/commit.md` be the only "Commit message" entry, so
+    -- `:CodeCompanion /commit` and the Action Palette stop hitting the builtin
+    -- `prompt_library/builtins/commit.md` first. Remove this once upstream
+    -- offers a per-prompt toggle for builtin prompts.
+    local prompt_library = require("codecompanion.prompt_library")
+    local load_builtins = prompt_library.load_builtins
+    prompt_library.load_builtins = function(context)
+      return vim.tbl_filter(function(prompt)
+        return not (prompt.opts and prompt.opts.alias == "commit")
+      end, load_builtins(context))
+    end
   end,
 }
