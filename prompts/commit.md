@@ -6,7 +6,6 @@ opts:
   alias: commit
   auto_submit: false
   is_slash_cmd: true
-  skills: git-commit
 ---
 
 ## user

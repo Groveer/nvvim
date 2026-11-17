@@ -59,9 +59,11 @@ return {
           "qt-ui-design",
         },
       },
-      chat = {
-        autoload = {
-          "qt",
+      opts = {
+        chat = {
+          autoload = {
+            "qt",
+          },
         },
       },
     },
@@ -159,6 +161,13 @@ return {
       },
       cmd = {
         adapter = "copilot",
+      },
+      background = {
+        gates = {
+          judge = {
+            adapter = { name = "groveer", model = "group/flash" },
+          },
+        },
       },
     },
     extensions = {
