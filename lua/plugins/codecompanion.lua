@@ -24,6 +24,7 @@ return {
     opts = {
       language = "Chinese",
       send_code = true,
+      -- log_level = "DEBUG",
     },
     display = {
       chat = {
@@ -165,7 +166,16 @@ return {
       background = {
         gates = {
           judge = {
+            -- group/flash 是路由别名（实测落到 workbuddy/glm-5.3），不强制 json_schema
             adapter = { name = "groveer", model = "group/flash" },
+            opts = {
+              system_prompt = function(default)
+                return default
+                  .. "\n\nReply with exactly one JSON object and nothing else, using only the keys "
+                  .. '"safe" (boolean) and "reason" (string). '
+                  .. "Never use key names such as decision, verdict, judgment, approve, allow or deny."
+              end,
+            },
           },
         },
       },
