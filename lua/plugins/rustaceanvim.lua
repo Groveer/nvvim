@@ -9,7 +9,7 @@ return {
       },
       server = {
         on_attach = function(client, bufnr)
-          require("nvvim.configs.lsp").on_attach(client, bufnr)
+          require("configs.lsp").on_attach(client, bufnr)
           local lsp = vim.lsp
           local map = vim.keymap.set
           local function opts(desc)

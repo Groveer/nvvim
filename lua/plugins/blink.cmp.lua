@@ -42,7 +42,7 @@ return {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = "mono",
-      kind_icons = require("nvvim.configs").icons.kinds,
+      kind_icons = require("configs").icons.kinds,
     },
 
     -- (Default) Only show the documentation popup when manually triggered

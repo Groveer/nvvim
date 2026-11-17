@@ -39,7 +39,7 @@ M:load_python()
 
 M.lazy_config = {
   spec = {
-    { import = "nvvim.plugins" },
+    { import = "plugins" },
   },
   defaults = {
     lazy = true,

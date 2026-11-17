@@ -18,12 +18,12 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("nvvim.configs.options")
-require("nvvim.configs.autocmds")
-require("nvvim.configs.keymap")
-require("nvvim.configs.lsp")
+require("configs.options")
+require("configs.autocmds")
+require("configs.keymap")
+require("configs.lsp")
 
-require("lazy").setup(require("nvvim.configs").lazy_config)
+require("lazy").setup(require("configs").lazy_config)
 
 require("vim._core.ui2").enable({
   enabled = true,

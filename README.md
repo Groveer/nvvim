@@ -1,33 +1,35 @@
 # NVVim - Modern Neovim Configuration
 
-A high-performance Neovim configuration written in Lua, designed for speed, aesthetics, and developer productivity. Built on top of NvChad with extensive customization and modern plugins.
+A high-performance Neovim configuration written in Lua, designed for speed, aesthetics, and
+developer productivity. Built on top of NvChad with extensive customization and modern plugins.
 
 ## 🚀 Features
 
 ### Performance & Startup
-- **Blazing Fast Startup**: 0.02s - 0.07s startup time
-- **Lazy Loading**: 93% of plugins loaded on-demand
-- **Optimized Performance**: Disabled unnecessary built-in plugins
+- **Fast Startup**: 0.02s - 0.07s startup time
+- **Lazy Loading**: Most plugins are loaded on demand via `lazy.nvim` events, commands, `ft` and `keys`
+- **Trimmed Runtime**: Disabled unnecessary built-in plugins
 
 ### AI Integration
-- **Code Companion**: Zed-like AI IDE experience with [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
-- **GitHub Copilot**: Native integration with inline completions
+- **Code Companion**: Zed-like AI workflow with [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
+- **Copilot Adapter**: Copilot backing the chat/CLI adapters, installed through Mason
 
 ### Language Support
-- **Native LSP**: Comprehensive language server configuration
+- **Native LSP**: Shared `on_attach`, keymaps and capabilities in `lua/configs/lsp.lua`
 - **Semantic Tokens**: Uses LSP semantic tokens for advanced syntax highlighting
 - **Rust Enhancement**: Supercharged Rust development with [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
-- **Crates Management**: Dependency management for Rust projects
+- **Crates Management**: Dependency management for Cargo projects
+- **Python Provider**: Dedicated `.venv` with `pynvim` created on first start
 
 ### UI & Experience
 - **Beautiful Themes**: Multiple themes with theme toggler via [base46](https://github.com/NvChad/base46)
-- **Modern UI**: Statusline, tabufline, and cheatsheets via [NvChad UI](https://github.com/NvChad/ui)
-- **File Navigation**: Enhanced file explorer with [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
-- **Smart Navigation**: Advanced movement with [flash.nvim](https://github.com/folke/flash.nvim)
+- **Modern UI**: Statusline, tabufline and cheatsheet via [NvChad UI](https://github.com/NvChad/ui)
+- **File Navigation**: File explorer with [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
+- **Smart Navigation**: Jump anywhere with [flash.nvim](https://github.com/folke/flash.nvim)
 
 ### Editor Enhancements
-- **Fuzzy Finder**: Fast file searching and preview with [fzf-lua](https://github.com/ibhagwan/fzf-lua)
-- **Git Integration**: Buffer-level git integration with [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- **Fuzzy Finder**: Fast file search and preview with [fzf-lua](https://github.com/ibhagwan/fzf-lua)
+- **Git Integration**: Buffer-level git signs with [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - **Todo Management**: Highlight and search todo comments
 - **Formatting**: Lightweight formatting with [conform.nvim](https://github.com/stevearc/conform.nvim)
 
@@ -35,16 +37,22 @@ A high-performance Neovim configuration written in Lua, designed for speed, aest
 
 ### AI & Assistants
 - [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) - AI-powered coding assistant
-- GitHub Copilot integration
+- Copilot adapter integration
 
 ### Language & LSP
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Native LSP configuration
+- [mason.nvim](https://github.com/williamboman/mason.nvim) - LSP/DAP/linter installer
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Enhanced Rust development
-- [crates.nvim](https://github.com/Saecki/crates.nvim) - Rust dependency management
+- [crates.nvim](https://github.com/Saecki/crates.nvim) - Cargo dependency management
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax parsing
+- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Sticky context lines
+- [nvim-lsp-endhints](https://github.com/chrisgrieser/nvim-lsp-endhints) - Inline type hints
+- [tiny-inline-diagnostic.nvim](https://github.com/rachartier/tiny-inline-diagnostic.nvim) - Inline diagnostics
+- [nvim-navic](https://github.com/SmiteshP/nvim-navic) - Breadcrumb navigation
 
 ### Completion & Snippets
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Smart autocompletion
+- [blink.pairs](https://github.com/saghen/blink.pairs) - Auto pairs
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) - Community snippets
 
 ### Navigation & Search
@@ -52,58 +60,84 @@ A high-performance Neovim configuration written in Lua, designed for speed, aest
 - [flash.nvim](https://github.com/folke/flash.nvim) - Enhanced navigation
 - [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) - File explorer
 - [aerial.nvim](https://github.com/stevearc/aerial.nvim) - Code outline
+- [nvim-spectre](https://github.com/nvim-pack/nvim-spectre) - Project-wide search & replace
 
 ### Git & Version Control
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git integration
 - [git-conflict.nvim](https://github.com/akinsho/git-conflict.nvim) - Merge conflict resolution
+- [vscode-diff.nvim](https://github.com/esmuellert/vscode-diff.nvim) - VSCode-style diff view
 
 ### UI & Visuals
 - [NvChad UI](https://github.com/NvChad/ui) - Modern interface components
 - [base46](https://github.com/NvChad/base46) - Theme system
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) - File icons
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) - Indent guides
+- [nvim-colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua) - Color previews
+- [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) - Smooth scrolling
+- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) - Markdown rendering
+- [image.nvim](https://github.com/3rd/image.nvim) - In-buffer image preview
 
 ### Quality of Life
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) - Todo management
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybinding help
+- [checkmate.nvim](https://github.com/bngarren/checkmate.nvim) - Markdown todo lists
+- [mini.trailspace](https://github.com/nvim-mini/mini.trailspace) - Trailing whitespace
+- [stcursorword](https://github.com/sontungexpt/stcursorword) - Highlight word under cursor
 - [smartyank.nvim](https://github.com/ibhagwan/smartyank.nvim) - Smart yanking
 - [suda.vim](https://github.com/lambdalisue/suda.vim) - Sudo file operations
+- [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim) - Paste images from clipboard
 
 ## 🛠 Installation
 
-### Method 1: Direct Installation
+### Requirements
+
+- Neovim >= 0.11 (built with LuaJIT)
+- `git`, `rg`, `fd` and a Nerd Font for icons
+- Optional per-feature dependencies: `imagemagick` (image rendering), `cargo` (Rust)
+
+### Setup
+
+Back up any existing config first, then clone into place:
 
 ```bash
+mv ~/.config/nvim ~/.config/nvim.bak
 git clone https://github.com/Groveer/nvvim.git ~/.config/nvim
 ```
 
-### Method 2: Use with LazyVim Starter
+Launch `nvim` — `lazy.nvim` bootstraps itself, then installs every plugin pinned in
+`lazy-lock.json`. Use `:Lazy` to inspect or update plugins, `:Mason` to manage language servers.
 
-```lua
--- In your LazyVim configuration
-spec = {
-  -- Import nvvim plugins
-  { "Groveer/nvvim", import = "nvvim.plugins" },
-  -- Your custom plugins
-  { import = "plugins" },
-}
+## 📁 Project Structure
+
+```text
+~/.config/nvim
+├── init.lua              # Entry point: lazy.nvim bootstrap, ui2, config loading
+├── lua/
+│   ├── configs/          # Core config modules
+│   │   ├── init.lua      # lazy.nvim spec, icons, platform detection, Python provider
+│   │   ├── options.lua   # vim.opt options
+│   │   ├── keymap.lua    # Global keymaps
+│   │   ├── autocmds.lua  # Autocommands
+│   │   └── lsp.lua       # Shared LSP on_attach / keymaps / capabilities
+│   ├── plugins/          # One file per plugin, auto-imported by lazy.nvim
+│   └── chadrc.lua        # NvChad theme and UI config
+├── after/                # Filetype-specific overrides
+├── snippets/             # Custom snippets
+├── spell/                # Spellfile word lists
+├── skills/  prompts/     # CodeCompanion skills and prompt library
+└── lazy-lock.json        # Plugin version lockfile
 ```
 
-### Method 3: Selective Plugin Import
-
-```lua
--- Import only specific plugin categories
-spec = {
-  -- Import AI plugins
-  { "Groveer/nvvim", import = "nvvim.plugins.codecompanion" },
-  -- Import LSP plugins
-  { "Groveer/nvvim", import = "nvvim.plugins.fzf-lua" },
-  -- Your custom plugins
-  { import = "plugins" },
-}
-```
+Plugin specs resolve as `plugins.<name>`, core config as `configs`, `configs.lsp`, and so on.
+A new plugin only needs a file dropped into `lua/plugins/` — there is no registration step.
 
 ## ⚙️ Configuration
+
+### Entry Point
+
+`init.lua` sets up the runtime in this order: bootstrap `lazy.nvim` → load `configs.options`,
+`configs.autocmds`, `configs.keymap`, `configs.lsp` → `require("lazy").setup(require("configs").lazy_config)`
+→ enable `vim._core.ui2`.
 
 ### Customizing Themes
 
@@ -136,19 +170,14 @@ M.ui = {
 }
 ```
 
-## 🎯 Key Features
+### Platform Handling
 
-- **Modular Architecture**: Each plugin can be used independently
-- **Performance Focused**: Optimized for speed and responsiveness
-- **Modern Tooling**: Integration with latest Neovim features
-- **Developer Experience**: Thoughtful defaults with extensive customization
+`lua/configs/init.lua` detects `is_mac`, `is_linux`, `is_windows` and `is_wsl` once at startup.
+Plugins branch on these flags — for example `image.nvim` is disabled on Windows:
 
-## 🤝 Contributing
-
-This configuration is designed to be modular and extensible. Feel free to:
-- Fork and customize for your workflow
-- Submit issues for bugs or feature requests
-- Contribute improvements via pull requests
+```lua
+enabled = not require("configs").is_windows,
+```
 
 ## 📄 License
 
