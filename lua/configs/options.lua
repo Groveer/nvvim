@@ -57,6 +57,9 @@ opt.splitbelow = true
 -- New vertically split windows will be to the right of the current window
 opt.splitright = true
 
+-- Default border for all floating windows that don't set their own,
+opt.winborder = "rounded"
+
 -- Decrease mapped sequence wait time
 opt.timeoutlen = 400
 

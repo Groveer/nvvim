@@ -29,6 +29,13 @@ return {
     display = {
       chat = {
         start_in_insert_mode = true,
+        window = {
+          layout = "float", -- Can be "float", "vertical", "horizontal", "tab" or "buffer"
+          relative = "editor",
+          border = "rounded",
+          width = vim.o.columns - 4,
+          height = vim.o.lines - 2,
+        },
       },
     },
     prompt_library = {
