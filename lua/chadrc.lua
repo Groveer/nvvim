@@ -181,10 +181,10 @@ M.term = {
   -- hl = "Normal:term,WinSeparator:WinSeparator",
   float = {
     relative = "editor",
-    row = 0,
-    col = 0,
-    width = 1,
-    height = 1,
+    row = 0.01,
+    col = 0.01,
+    width = 0.97,
+    height = 0.95,
     border = "rounded",
   },
 }
