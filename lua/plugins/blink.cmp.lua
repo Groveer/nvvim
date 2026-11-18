@@ -53,6 +53,8 @@ return {
         window = { border = "rounded" },
         auto_show = false,
       },
+      trigger = { prefetch_on_insert = false },
+      ghost_text = { enabled = true },
     },
 
     signature = {
