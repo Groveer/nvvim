@@ -11,6 +11,10 @@ opt.laststatus = 3
 -- Don't show the mode, since it's already in the status line plugin
 opt.showmode = false
 
+-- Don't show cmdline in normal mode
+opt.cmdheight = 0
+opt.showcmdloc = "statusline"
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.

@@ -26,7 +26,7 @@ require("configs.lsp")
 require("lazy").setup(require("configs").lazy_config)
 
 require("vim._core.ui2").enable({
-  enabled = true,
+  enable = true,
   msg = {
     target = "msg",
     timeout = 4000,

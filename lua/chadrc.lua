@@ -118,11 +118,12 @@ M.ui = {
   },
   statusline = {
     theme = "vscode_colored",
-    order = { "mode", "file", "git", "navic", "%=", "diagnostics", "cursor", "lsp", "cwd" },
+    order = { "mode", "file", "git", "navic", "%=", "diagnostics", "showcmd", "cursor", "lsp", "cwd" },
     modules = {
       navic = statusline_navic_config,
       lsp = statusline_lsp_config(),
       cursor = "%#St_pos_text# %l:%c  ",
+      showcmd = "%#StText# %S ",
     },
   },
 }
