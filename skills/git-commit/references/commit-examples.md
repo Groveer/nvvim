@@ -1,10 +1,15 @@
-# Commit Message Templates
+# Commit Message Examples
 
-Use these templates as references when generating commit messages.
+Load this file when you need a concrete pattern for a specific change type, or when the user asks what a commit message should look like.
 
-**Note**: This skill has zero script dependencies. All parsing logic (PMS URLs, Issue URLs) is handled by the AI directly through natural language understanding and git commands.
+**Rule**: the trailer block is mandatory, its values are not. `PMS:` is always present and may be empty; `Fixes:` appears only when an Issue exists. A message with a bare `PMS:` and no `Fixes:` is valid and commits normally.
+**Order**: `Log:` → `Influence:` → `PMS:` → `Fixes:`.
+**Placement**: trailers come last — at least one blank line above them, no blank lines between them, nothing after them. Otherwise `git interpret-trailers --parse` silently drops them.
+**Fixes**: shown only where an Issue exists in the sample. Never omit a `Fixes:` the user actually provided, and never emit it blank.
 
 ## Examples
+
+Feature Addition · Bug Fix · Documentation · Performance Improvement · Refactoring · Test Coverage · CI/CD · Chore · Blank PMS With Issue · Blank PMS Alone
 
 ### Feature Addition
 
@@ -41,6 +46,7 @@ Fixes: #183
 
 ### Bug Fix
 
+```
 fix: resolve incorrect role assignment mapping
 
 1. Use correct role key mapping from database configuration.
@@ -66,6 +72,10 @@ Influence:
 1. 验证用户角色分配与数据库配置一致。
 2. 测试缺失或无效角色ID的边界情况。
 3. 确认无法识别的角色触发警告日志。
+
+PMS: BUG-412077
+Fixes: #187
+```
 
 ### Documentation
 
@@ -95,6 +105,8 @@ Influence:
 1. 按照指南在ARM64上从头安装验证。
 2. 确认所有依赖命令无错误执行。
 3. 测试每个故障排查步骤是否正确。
+
+PMS: TASK-512340
 ```
 
 ### Performance Improvement
@@ -132,6 +144,7 @@ Fixes: #204
 
 ### Refactoring
 
+```
 refactor: extract common validation logic to utils module
 
 1. Move duplicate validation rules from endpoints to shared utility.
@@ -157,6 +170,9 @@ Influence:
 1. 验证所有端点仍然返回正确的验证错误。
 2. 运行现有测试套件——预期无回归。
 3. 确认没有未使用的导入或孤立函数残留。
+
+PMS: TASK-620118
+```
 
 ### Test Coverage
 
@@ -187,6 +203,7 @@ Influence:
 2. 验证覆盖率报告显示认证模块>90%。
 3. 确认边界情况处理：空令牌、空字符串、垃圾输入。
 
+PMS: TASK-733902
 Fixes: #251
 ```
 
@@ -252,5 +269,74 @@ Influence:
 3. 确认旧版本的安全公告已解决。
 
 PMS: TASK-345678
+```
+
+### Blank PMS With Issue
+
+`PMS:` is present with an empty value while `Fixes:` supplies the reference. `--parse` prints `PMS: ` and `Fixes: #512` — both lines surviving is the success condition.
+
+```
+fix: guard against null config on first launch
+
+1. Treat a missing config file as empty defaults.
+2. Skip validation when no user config exists yet.
+3. Add regression test for the first-launch path.
+
+Log: First launch no longer crashes on missing config
+
+Influence:
+1. Delete the config file and launch — confirm no crash.
+2. Verify defaults are applied and written back.
+3. Run the new regression test.
+
+fix: 修复首次启动空配置崩溃
+
+1. 将缺失的配置文件视为空默认值。
+2. 尚无用户配置时跳过校验。
+3. 添加首次启动路径的回归测试。
+
+Log: 首次启动不再因缺失配置而崩溃
+
+Influence:
+1. 删除配置文件后启动——确认不崩溃。
+2. 验证默认值被应用并回写。
+3. 运行新增的回归测试。
+
+PMS:
+Fixes: #512
+```
+
+### Blank PMS Alone
+
+No PMS number and no Issue — emit the bare `PMS:` line and commit. The line is mandatory; the value is not.
+
+```
+docs: document the trailer verification step
+
+1. Explain why the parse exit code is not a valid check.
+2. Show the output comparison table.
+3. Link the verification step from the workflow.
+
+Log: Documented trailer verification
+
+Influence:
+1. Follow the documented commands in a scratch repo.
+2. Confirm a malformed trailer produces empty output.
+3. Verify the table covers every failure mode seen.
+
+docs: 补充 trailers 校验说明
+
+1. 说明为何解析退出码不能作为检查依据。
+2. 给出输出比对表。
+3. 从工作流链接到该验证步骤。
+
+Log: 补充 trailers 校验文档
+
+Influence:
+1. 在临时仓库中按文档命令执行。
+2. 确认格式错误的 trailer 输出为空。
+3. 核对表格覆盖了所有已见失败模式。
+
+PMS:
 ```
 
