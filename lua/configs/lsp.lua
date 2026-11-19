@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-field, need-check-nil
-local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
+local is_windows = vim.g.cfg_is_windows
 local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath("data"), "mason", "bin" }, sep) .. delim .. vim.env.PATH

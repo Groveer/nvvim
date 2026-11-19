@@ -1,4 +1,4 @@
-# NVVim - Modern Neovim Configuration
+# Modern Neovim Configuration
 
 A high-performance Neovim configuration written in Lua, designed for speed, aesthetics, and
 developer productivity. Built on top of NvChad with extensive customization and modern plugins.
@@ -111,10 +111,10 @@ Launch `nvim` — `lazy.nvim` bootstraps itself, then installs every plugin pinn
 
 ```text
 ~/.config/nvim
-├── init.lua              # Entry point: lazy.nvim bootstrap, ui2, config loading
+├── init.lua              # Entry point: lazy.nvim bootstrap + setup, ui2, config loading
 ├── lua/
 │   ├── configs/          # Core config modules
-│   │   ├── init.lua      # lazy.nvim spec, icons, platform detection
+│   │   ├── global.lua    # Shared globals (vim.g.cfg_*): platform flags, paths
 │   │   ├── options.lua   # vim.opt options
 │   │   ├── keymap.lua    # Global keymaps
 │   │   ├── autocmds.lua  # Autocommands
@@ -129,7 +129,7 @@ Launch `nvim` — `lazy.nvim` bootstraps itself, then installs every plugin pinn
 └── lazy-lock.json        # Plugin version lockfile
 ```
 
-Plugin specs resolve as `plugins.<name>`, core config as `configs`, `configs.lsp`, and so on.
+Plugin specs resolve as `plugins.<name>`, core config as `configs.global`, `configs.lsp`, and so on.
 A new plugin only needs a file dropped into `lua/plugins/` — there is no registration step.
 
 The Python venv is intentionally *not* in this tree. It lives in
@@ -142,9 +142,9 @@ creates it lazily and exports `VIRTUAL_ENV` plus `PATH`, while
 
 ### Entry Point
 
-`init.lua` sets up the runtime in this order: bootstrap `lazy.nvim` → load `configs.options`,
-`configs.autocmds`, `configs.keymap`, `configs.lsp` → `require("lazy").setup(require("configs").lazy_config)`
-→ enable `vim._core.ui2`.
+`init.lua` sets up the runtime in this order: bootstrap `lazy.nvim` → load `configs.global`,
+`configs.options`, `configs.autocmds`, `configs.keymap`, `configs.lsp`, `configs.python` →
+`require("lazy").setup({ ... })` (config inlined in `init.lua`) → enable `vim._core.ui2`.
 
 ### Customizing Themes
 
@@ -179,11 +179,12 @@ M.ui = {
 
 ### Platform Handling
 
-`lua/configs/init.lua` detects `is_mac`, `is_linux`, `is_windows` and `is_wsl` once at startup.
-Plugins branch on these flags — for example `image.nvim` is disabled on Windows:
+`lua/configs/global.lua` detects `cfg_is_mac`, `cfg_is_linux`, `cfg_is_windows` and `cfg_is_wsl`
+once at startup and stores them as `vim.g.cfg_*`. Plugins read `vim.g`
+directly instead of requiring `configs` — for example `image.nvim` is disabled on Windows:
 
 ```lua
-enabled = not require("configs").is_windows,
+enabled = not vim.g.cfg_is_windows,
 ```
 
 ## 📄 License

@@ -1,3 +1,9 @@
+local icons = {
+  package_pending = " ",
+  package_installed = " ",
+  package_uninstalled = " ",
+}
+
 return {
   "williamboman/mason.nvim",
   cmd = { "Mason", "MasonInstall", "MasonUpdate" },
@@ -58,7 +64,7 @@ return {
       border = "rounded",
       width = 0.8,
       height = 0.8,
-      icons = require("configs").icons.mason,
+      icons = icons,
     },
 
     max_concurrent_installers = 10,

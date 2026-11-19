@@ -1,3 +1,47 @@
+local kind_icons = {
+  Array = " ",
+  Boolean = "󰨙 ",
+  Class = " ",
+  Codeium = "󰘦 ",
+  Color = " ",
+  Control = " ",
+  Collapsed = " ",
+  Constant = "󰏿 ",
+  Constructor = " ",
+  Copilot = " ",
+  Enum = " ",
+  EnumMember = " ",
+  Event = " ",
+  Field = " ",
+  File = " ",
+  Folder = " ",
+  Function = "󰊕 ",
+  Interface = " ",
+  Key = " ",
+  Keyword = " ",
+  Method = "󰊕 ",
+  Module = " ",
+  Namespace = "󰦮 ",
+  Null = " ",
+  Number = "󰎠 ",
+  Object = " ",
+  Operator = " ",
+  Ollama = "󰚩 ",
+  Deepseek = "󰚩 ",
+  Package = " ",
+  Property = " ",
+  Reference = " ",
+  Snippet = " ",
+  String = " ",
+  Struct = "󰆼 ",
+  TabNine = "󰏚 ",
+  Text = " ",
+  TypeParameter = " ",
+  Unit = " ",
+  Value = " ",
+  Variable = "󰀫 ",
+}
+
 return {
   "saghen/blink.cmp",
   -- optional: provides snippets for the snippet source
@@ -42,7 +86,7 @@ return {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = "mono",
-      kind_icons = require("configs").icons.kinds,
+      kind_icons = kind_icons,
     },
 
     -- (Default) Only show the documentation popup when manually triggered

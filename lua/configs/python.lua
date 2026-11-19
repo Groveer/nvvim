@@ -12,7 +12,7 @@
 
 local M = {}
 
-local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
+local is_windows = vim.g.cfg_is_windows
 local sep = is_windows and ";" or ":"
 
 ---@return string
