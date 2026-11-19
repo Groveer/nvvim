@@ -161,8 +161,8 @@ M.on_attach = function(client, bufnr)
   end
   local function restart_lsp_clients()
     local clients = lsp.get_clients({ bufnr = bufnr })
-    for _, _client in ipairs(clients) do
-      client.stop()
+    for _, c in ipairs(clients) do
+      c:stop()
     end
 
     vim.defer_fn(function()
