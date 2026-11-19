@@ -14,9 +14,9 @@ return {
       desc = "CodeCompanion: actions",
     },
     {
-      "<leader>ag",
+      "<A-a>",
       "<CMD>CodeCompanionChat Toggle<CR>",
-      mode = "n",
+      mode = {"n", "i", "v"},
       desc = "CodeCompanion: toggle",
     },
   },
