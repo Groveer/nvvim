@@ -96,11 +96,6 @@ return {
               api_key = "TAVILY_API_KEY",
             },
           },
-          jina = {
-            env = {
-              api_key = "JINA_API_KEY",
-            },
-          },
         },
       },
     },
@@ -121,22 +116,10 @@ return {
           end,
           user = " User",
         },
-        slash_commands = {
-          ["fetch"] = {
-            opts = {
-              adapter = "jina", -- Can be "jina" or "markitdown"
-            },
-          },
-        },
         tools = {
           ["web_search"] = {
             opts = {
               adapter = "tavily",
-            },
-          },
-          ["fetch_webpage"] = {
-            opts = {
-              adapter = "jina", -- Can be "jina" or "markitdown"
             },
           },
           opts = {
