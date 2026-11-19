@@ -19,7 +19,7 @@ developer productivity. Built on top of NvChad with extensive customization and 
 - **Semantic Tokens**: Uses LSP semantic tokens for advanced syntax highlighting
 - **Rust Enhancement**: Supercharged Rust development with [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
 - **Crates Management**: Dependency management for Cargo projects
-- **Python Provider**: Dedicated `.venv` with `pynvim` created on first start
+- **Python Provider**: Dedicated venv in `stdpath("data")/.venv` with `pynvim` and the `markitdown` CLI installed on demand
 
 ### UI & Experience
 - **Beautiful Themes**: Multiple themes with theme toggler via [base46](https://github.com/NvChad/base46)
@@ -114,10 +114,11 @@ Launch `nvim` — `lazy.nvim` bootstraps itself, then installs every plugin pinn
 ├── init.lua              # Entry point: lazy.nvim bootstrap, ui2, config loading
 ├── lua/
 │   ├── configs/          # Core config modules
-│   │   ├── init.lua      # lazy.nvim spec, icons, platform detection, Python provider
+│   │   ├── init.lua      # lazy.nvim spec, icons, platform detection
 │   │   ├── options.lua   # vim.opt options
 │   │   ├── keymap.lua    # Global keymaps
 │   │   ├── autocmds.lua  # Autocommands
+│   │   ├── python.lua    # Python venv (provider, PATH, package installs)
 │   │   └── lsp.lua       # Shared LSP on_attach / keymaps / capabilities
 │   ├── plugins/          # One file per plugin, auto-imported by lazy.nvim
 │   └── chadrc.lua        # NvChad theme and UI config
@@ -130,6 +131,12 @@ Launch `nvim` — `lazy.nvim` bootstraps itself, then installs every plugin pinn
 
 Plugin specs resolve as `plugins.<name>`, core config as `configs`, `configs.lsp`, and so on.
 A new plugin only needs a file dropped into `lua/plugins/` — there is no registration step.
+
+The Python venv is intentionally *not* in this tree. It lives in
+`stdpath("data")/.venv` (e.g. `~/.local/share/nvim/.venv`): `configs.python`
+creates it lazily and exports `VIRTUAL_ENV` plus `PATH`, while
+`configs.python.ensure_package()` installs `pynvim` and — through the codecompanion
+`build` hook — `markitdown[all]`.
 
 ## ⚙️ Configuration
 
