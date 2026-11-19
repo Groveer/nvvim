@@ -1,5 +1,11 @@
 return {
   "olimorris/codecompanion.nvim",
+  -- `markitdown` converts files (docx/xlsx/pdf/…) to markdown for the chat's
+  -- file attachments. It is a Python CLI, so it lives in the same dedicated
+  -- venv as the provider rather than in Mason or the system interpreter.
+  build = function()
+    require("configs.python").ensure_package("markitdown", "markitdown[all]")
+  end,
   keys = {
     {
       "<leader>aa",
